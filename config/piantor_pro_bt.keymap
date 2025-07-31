@@ -41,7 +41,7 @@
             // | SHFT |  Z  |  X  |  C  |  V  |  B  |  N  |  M   |  ,  |  .  |  /  | ESC  |
             //                    | GUI | LWR | SPC | ENT | RSE  | ALT |
             bindings = <
-                &kp TAB   &kp B      &kp L &kp D &kp C &kp V &kp K &kp F &kp O   &kp U    &kp '     &kp BSPC
+                &kp TAB   &kp B      &kp L &kp D &kp C &kp V &kp K &kp F &kp O   &kp U    &kp SQT     &kp BSPC
                 &kp BSPC  &hm LGUI N &kp R &kp T &kp S &kp G &kp Y &kp H &kp A   &kp E    &kp I     &kp RET
                 &kp LSHFT &kp Q      &kp X &kp M &kp W &kp Z &kp J &kp P &kp DOT &kp FSLH &kp COMMA &kp SEMI
                                 &kp LGUI &mo 1 &kp 3 &kp SPACE &mo 2 &kp RALT
