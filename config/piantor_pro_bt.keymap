@@ -36,7 +36,7 @@
 / {
     macros {
         dead: dead {
-            compatible = "zmk,behavior-macro";
+            compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             bindings
                 = <&macro_param_1to1>
@@ -51,9 +51,8 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        alpha_layer {
             display-name = "GRAPHITE";
-            // ; should move away from RET, maybe to empty ?
             // |      |     | CTRL | ALT | CMD |      |      | CMD  | ALT | CTRL |     |     |
             // |      | CMD |      |     | NAV |      |      |      |     |      |     |     |
             // |      |     |      |     |     |      |      |      |     |      |     |     |
@@ -61,12 +60,12 @@
             // --------------------------------------------------------------------------------
             // | TAB  |  B  |  L   |  D  |  C  |  V   |   K  |  F   |  O  |  U   |  '  | `   |
             // | BSPC |  N  |  R   |  S  |  T  |  G   |   Y  |  H   |  A  |  E   |  I  | RET |
-            // | empty|  Q  |  X   |  M  |  W  |  Z   |   J  |  P   |  .  |  ?   |  ,  | ;   |
+            // | ;    |  Q  |  X   |  M  |  W  |  Z   |   J  |  P   |  .  |  ?   |  ,  | :   |
             //        | SHORTCUT | SYMBOL | SHIFT     |   SPACE | ESC | SYSTEM |
             bindings = <
                 &kp TAB   &kp B      &hm LCTRL L &hm LALT D &hm LGUI C &kp V       &kp K &hm RGUI F &hm RALT O &hm RCTRL U &kp SQT   &kp GRAVE
                 &kp BSPC  &hm LGUI N &kp R       &kp T      &hm 4 S    &kp G       &kp Y &kp H      &kp A      &kp E       &kp I     &kp RET
-                &trans    &kp Q      &kp X       &kp M      &kp W      &kp Z       &kp J &kp P      &kp DOT    &kp QMARK   &kp CMMA &kp SEMI
+                &kp SEMI    &kp Q      &kp X       &kp M      &kp W      &kp Z       &kp J &kp P      &kp DOT    &kp QMARK   &kp CMMA &kp COLN
                                                    &trans   &sl 2   &sl 1             &kp SPACE  &hm 3 ESC   &mo 5
             >;
         };
@@ -74,15 +73,14 @@
         // #1
         shift_layer {
             display-name = "SHIFT";
-            // the _ must be accessible on the right, 
             // |      |     |     |     |     |     |     |      |     |     |  "  |  ^  |
             // |      |     |     |     |     |     |     |      |     |     |     |     |
-            // |      |     |     |     |     |     |     |      |     |  !  |     |  :  |
+            // |      |     |     |     |     |     |     |      |  _  |  !  |     |     |
             //                 |     |     |        |        |      |     |  
             bindings = <
                 &kp LS(TAB) &kp LS(B) &kp LS(L) &kp LS(D) &kp LS(C) &kp LS(V)   &kp LS(K) &kp LS(F) &kp LS(O) &kp LS(U) &kp DQT   &kp CARET
                 &trans      &kp LS(N) &kp LS(R) &kp LS(T) &kp LS(S) &kp LS(G)   &kp LS(Y) &kp LS(H) &kp LS(A) &kp LS(E) &kp LS(I) &kp LS(RET)
-                &trans      &kp LS(Q) &kp LS(X) &kp LS(M) &kp LS(W) &kp LS(Z)   &kp LS(J) &kp LS(P) &trans    &kp EXCL  &trans    &kp COLN
+                &trans      &kp LS(Q) &kp LS(X) &kp LS(M) &kp LS(W) &kp LS(Z)   &kp LS(J) &kp LS(P) &kp UNDER &kp EXCL  &trans    &trans
                                                         &trans &trans &trans     &trans &trans &trans
             >;
         };
@@ -90,6 +88,7 @@
         // #2
         symbol_layer {
             display-name = "SYMBOL";
+            // the _ can be replaced. can : be at the same place than alpha_layer while keeping ?: easy ?""
             // |      |  !  |  <  |  >  |  =  |  -  |  |  |  %  |  {  |  }  |     |     |
             // |      |  /  |  *  |  _  |  "  |  +  |  &  |  (  |  )  |  [  |  ]  |     |
             // |      |  \  |  ~  |  #  |  $  |  @  |  ;  |  :  |  .  |  ?  |     |     |
