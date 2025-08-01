@@ -14,22 +14,36 @@
 };
 
 / {
+    chosen {
+        zmk,physical-layout = &default_layout;
+    };
+};
+
+/ {
     behaviors {
         hm: home_row_mod {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
-            require-prior-idle-ms = <150>;
-            tapping-term-ms = <280>;
-            quick-tap-ms = <175>;
+            require-prior-idle-ms = <120>;
+            tapping-term-ms = <220>;
+            quick-tap-ms = <160>;
         };
     };
 };
 
 / {
-    chosen {
-        zmk,physical-layout = &default_layout;
+    macros {
+        dead: dead {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <1>;
+            bindings
+                = <&macro_param_1to1>
+                , <&macro_tap &kp MACRO_PLACEHOLDER>
+                , <&macro_tap &kp SPACE>
+                ;
+        };
     };
 };
 
@@ -39,22 +53,28 @@
 
         default_layer {
             display-name = "GRAPHITE";
+            // ; should move away from RET, maybe to empty ?
+            // |      |     | CTRL | ALT | CMD |      |      | CMD  | ALT | CTRL |     |     |
+            // |      | CMD |      |     | NAV |      |      |      |     |      |     |     |
+            // |      |     |      |     |     |      |      |      |     |      |     |     |
+            //                 |     |     |          |        | NUM |     |  
             // --------------------------------------------------------------------------------
-            // | TAB  |  B  |  L  |  D  |  C  |  V  |  K  |  F   |  O  |  U  |  '  | `   |
-            // | BSPC |  N  |  R  |  S  |  T  |  G  |  Y  |  H   |  A  |  E  |  I  | RET |
-            // | empty|  Q  |  X  |  M  |  W  |  Z  |  J  |  P   |  .  |  ?  |  ,  | ;   |
-            //        | SHORTCUT | SYMBOL | SHIFT   |   SPACE | ESC | SYSTEM |
+            // | TAB  |  B  |  L   |  D  |  C  |  V   |   K  |  F   |  O  |  U   |  '  | `   |
+            // | BSPC |  N  |  R   |  S  |  T  |  G   |   Y  |  H   |  A  |  E   |  I  | RET |
+            // | empty|  Q  |  X   |  M  |  W  |  Z   |   J  |  P   |  .  |  ?   |  ,  | ;   |
+            //        | SHORTCUT | SYMBOL | SHIFT     |   SPACE | ESC | SYSTEM |
             bindings = <
-                &kp TAB   &kp B      &kp L &kp D &kp C &kp V &kp K &kp F &kp O   &kp U     &kp SQT   &kp GRAVE
-                &kp BSPC  &hm LGUI N &kp R &kp T &kp S &kp G &kp Y &kp H &kp A   &kp E     &kp I     &kp RET
-                &trans    &kp Q      &kp X &kp M &kp W &kp Z &kp J &kp P &kp DOT &kp QMARK &kp CMMA &kp SEMI
-                               &trans   &mo 2   &sl 1   &kp SPACE   &kp ESC   &mo 4
+                &kp TAB   &kp B      &hm LCTRL L &hm LALT D &hm LGUI C &kp V       &kp K &hm RGUI F &hm RALT O &hm RCTRL U &kp SQT   &kp GRAVE
+                &kp BSPC  &hm LGUI N &kp R       &kp T      &hm 4 S    &kp G       &kp Y &kp H      &kp A      &kp E       &kp I     &kp RET
+                &trans    &kp Q      &kp X       &kp M      &kp W      &kp Z       &kp J &kp P      &kp DOT    &kp QMARK   &kp CMMA &kp SEMI
+                                                   &trans   &sl 2   &sl 1             &kp SPACE  &hm 3 ESC   &mo 5
             >;
         };
 
         // #1
         shift_layer {
             display-name = "SHIFT";
+            // the _ must be accessible on the right, 
             // |      |     |     |     |     |     |     |      |     |     |  "  |  ^  |
             // |      |     |     |     |     |     |     |      |     |     |     |     |
             // |      |     |     |     |     |     |     |      |     |  !  |     |  :  |
@@ -62,7 +82,7 @@
             bindings = <
                 &kp LS(TAB) &kp LS(B) &kp LS(L) &kp LS(D) &kp LS(C) &kp LS(V)   &kp LS(K) &kp LS(F) &kp LS(O) &kp LS(U) &kp DQT   &kp CARET
                 &trans      &kp LS(N) &kp LS(R) &kp LS(T) &kp LS(S) &kp LS(G)   &kp LS(Y) &kp LS(H) &kp LS(A) &kp LS(E) &kp LS(I) &kp LS(RET)
-                &trans      &kp LS(Q) &kp LS(X) &kp LS(M) &kp LS(W) &kp LS(Z)   &kp LS(J) &kp LS(P) &kp DOT   &kp EXCL  &kp CMMA  &kp COLN
+                &trans      &kp LS(Q) &kp LS(X) &kp LS(M) &kp LS(W) &kp LS(Z)   &kp LS(J) &kp LS(P) &trans    &kp EXCL  &trans    &kp COLN
                                                         &trans &trans &trans     &trans &trans &trans
             >;
         };
@@ -72,20 +92,22 @@
             display-name = "SYMBOL";
             // |      |  !  |  <  |  >  |  =  |  -  |  |  |  %  |  {  |  }  |     |     |
             // |      |  /  |  *  |  _  |  "  |  +  |  &  |  (  |  )  |  [  |  ]  |     |
-            // |      |  \  |  ~  |  #  |  $  |  @  |  ;  |  :  |  ?  |  .  |     |     |
+            // |      |  \  |  ~  |  #  |  $  |  @  |  ;  |  :  |  .  |  ?  |     |     |
             //                 |     |     |        |        |      |     |  
             bindings = <
-                &trans &kp EXCL  &kp LT    &kp GT    &kp EQL  &kp MINUS   &kp PIPE &kp PRCNT &kp LBRC  &kp RBRC &trans   &trans
-                &trans &kp SLASH &kp STAR  &kp UNDER &kp DQT  &kp PLUS    &kp AMPS &kp LPAR  &kp RPAR  &kp LBKT &kp RBKT &trans
-                &trans &kp NUBS &kp TILDE2 &kp NUHS  &kp DLLR &kp AT      &kp SEMI &kp COLN  &kp QMARK &kp DOT  &trans   &trans
+                &trans &kp EXCL  &kp LT     &kp GT    &kp EQL   &kp MINUS   &kp PIPE &kp PRCNT &kp LBRC  &kp RBRC  &trans   &trans
+                &trans &kp SLASH &kp STAR   &kp UNDER &dead DQT &kp PLUS    &kp AMPS &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT &trans
+                &trans &kp NUHS  &dead TILD &kp HASH  &kp DLLR  &kp AT      &kp SEMI &kp COLN  &kp DOT   &kp QMARK &trans   &trans
                                                   &trans &trans &trans     &trans &trans &trans       
             >;
         };
 
         // #3
         number_layer {
-            display-name = "NUMBER"; // the . , = - + / * ^ keys could go on right side ?
-            // |      |     |     |     |     |     |  K  |      |     |     |     |     |
+            display-name = "NUMBER"; 
+            // the . , = - + / * ^ keys could go on right side ?
+            // eur, dol, pound can be added on the left
+            // |      |     |     |     |     |     |  K  |      |     |     |     |     |  
             // |      |  1  |  2  |  3  |  4  |  5  |  6  |  7   |  8  |  9  |  0  |     |
             // |      |     |     |     |     |     |  J  |      |     |     |     |     |
             //                 |     |     |        |        |      |     |  
@@ -98,6 +120,21 @@
         };
 
         // #4
+        nav_layer {
+            display-name = "NAV";
+            // |      |     |     |     |     |     |     |      |  UP  |       |     |     |
+            // |      |     |     |     |     |     |     | LEFT | DOWN | RIGHT |     |     |
+            // |      |     |     |     |     |     |     |      |      |       |     |     |
+            //                 |     |     |        |        |      |     |  
+            bindings = <
+                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
+                                     &trans &trans &trans  &trans &trans &trans       
+            >;
+        };
+
+        // #5
         system_layer {
             display-name = "SYSTEM";
             // -----------------------------------------------------------------------------------------
@@ -110,16 +147,6 @@
                 &kp LCTRL &bt BT_SEL 0 &bt BT_SEL 1    &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
                 &kp LSHFT &bt BT_CLR   &rgb_ug RGB_TOG &sys_reset   &bootloader  &studio_unlock &trans   &trans   &trans &trans    &trans &trans
                                                        &kp LGUI     &trans       &kp SPACE      &kp LGUI &trans   &kp SPACE
-            >;
-        };
-
-        extra_layer_1 {
-            display-name = "EXTRA 1";
-            bindings = <
-                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-                                     &trans &trans &trans  &trans &trans &trans       
             >;
         };
 
