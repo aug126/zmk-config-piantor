@@ -63,10 +63,10 @@
             // |  _   |  Q  |  X   |  M  |  W  |  Z   |   J  |  P  |  .  |  ,   |  `  |  "  |
             //        | SHORTCUT | SYMBOL | SHIFT     |   SPACE | STAR | SYSTEM |       // STAR would be ESC by default, SYMBOL should be TAB when a modifier is pressed.
             bindings = <
-                &kp TAB   &kp B       &kp L       &kp D      &lt 5 C &kp V    &kp K &lt 5 F &kp O      &kp U       &kp SQT     &kp LS(GRAVE)
-                &kp BSPC  &hm LCTRL N &hm LGUI R  &hm LALT T &lt 4 S &kp G    &kp Y &lt 4 H &hm LALT A &hm LGUI E  &hm LCTRL I &kp RET
-                &kp UNDER &kp Q       &kp X       &kp M      &kp W   &kp Z    &kp J &kp P   &kp DOT    &kp RMARK   &kp GRAVE   &kp LS(SQT)
-                                          &trans   &sl 2      &sl 1               &kp SPACE  &lt 3 ESC   &mo 6
+                &kp TAB     &kp B       &kp L       &kp D       &lt 5 C     &kp V           &kp K   &lt 5 F     &kp O       &kp U       &kp SQT     &kp LS(GRAVE)
+                &kp BSPC    &hm LCTRL N &hm LGUI R  &hm LALT T  &lt 4 S     &kp G           &kp Y   &lt 4 H     &hm LALT A  &hm LGUI E  &hm LCTRL I &kp RET
+                &kp UNDER   &kp Q       &kp X       &kp M       &kp W       &kp Z           &kp J   &kp P       &kp DOT     &kp COMMA   &kp GRAVE   &kp LS(SQT)
+                                                         &trans  &sl 2  &sl 1                   &kp SPACE  &lt 3 ESC  &mo 6
             >;
         };
 
