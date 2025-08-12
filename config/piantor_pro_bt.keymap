@@ -94,9 +94,9 @@
             // |      |  \  |  ~  |  #  |  $  |  %  |  :  |  ;  |  .  |  ?  |  `  | (") |
             //                 |     |     |        |        |     |     |
             bindings = <
-                &trans &kp SLASH &kp STAR &kp PLUS   &kp EQL   &kp MINUS   &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead LS(GRAVE)
-                &trans &kp EXCL  &kp LT     &kp GT   &kp UNDER &dead DQT   &kp PIPE &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
-                &trans &kp NUHS  &dead TILD &kp HASH &kp DLLR  &kp PRCNT   &kp COLN &kp SEMI  &kp DOT   &kp QMARK &dead GRAVE &dead LS(SQT)
+                &trans &kp SLASH &kp STAR   &kp PLUS    &kp EQL   &kp MINUS   &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead LS(GRAVE)
+                &trans &kp EXCL  &kp LT     &kp GT      &kp UNDER &dead DQT   &kp PIPE &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
+                &trans &kp NUHS  &dead TILD &kp HASH    &kp DLLR  &kp PRCNT   &kp COLN &kp SEMI  &kp DOT   &kp QMARK &dead GRAVE &dead LS(SQT)
                                                   &trans &trans &trans       &trans &trans &trans
             >;
         };
@@ -113,7 +113,7 @@
                 &trans &trans &trans     &trans         &trans   &trans       &kp K  &trans &trans &trans &trans &trans
                 &trans &kp N1 &kp N2     &kp N3         &hm 4 N4 &kp N5       &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &trans
                 &trans &trans &kp LA(N3) &kp LA(LS(N2)) &kp DLLR &trans       &kp J  &trans &trans &trans &trans &trans
-                                                &trans &trans LSHFT             &trans &trans &trans
+                                            &trans &trans &kp LSHFT               &trans &trans &trans
             >;
         };
 
