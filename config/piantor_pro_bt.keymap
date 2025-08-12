@@ -63,7 +63,7 @@
             // |  _   |  Q  |  X   |  M  |  W  |  Z   |   J  |  P  |  .  |  ,   |  `  |  "  |
             //        | SHORTCUT | SYMBOL | SHIFT     |   SPACE | STAR | SYSTEM |       // STAR would be ESC by default, SYMBOL should be TAB when a modifier is pressed.
             bindings = <
-                &kp TAB     &kp B       &kp L       &kp D       &lt 5 C     &kp V           &kp K   &lt 5 F     &kp O       &kp U       &kp SQT     &kp GRAVE
+                &kp TAB     &kp B       &kp L       &kp D       &lt 5 C     &kp V           &kp K   &lt 5 F     &kp O       &kp U       &kp SQT     &kp CARET
                 &kp BSPC    &hm LCTRL N &hm LGUI R  &hm LALT T  &lt 4 S     &kp G           &kp Y   &lt 4 H     &hm LALT A  &hm LGUI E  &hm LCTRL I &kp RET
                 &kp UNDER   &kp Q       &kp X       &kp M       &kp W       &kp Z           &kp J   &kp P       &kp DOT     &kp COMMA   &kp GRAVE   &kp LS(SQT)
                                                          &trans  &sl 2  &sl 1                   &kp SPACE  &lt 3 ESC  &mo 6
@@ -80,7 +80,7 @@
             bindings = <
                 &kp LS(TAB) &kp LS(B) &kp LS(L) &kp LS(D) &kp LS(C) &kp LS(V)   &kp LS(K) &kp LS(F) &kp LS(O) &kp LS(U) &trans    &trans
                 &trans      &kp LS(N) &kp LS(R) &kp LS(T) &kp LS(S) &kp LS(G)   &kp LS(Y) &kp LS(H) &kp LS(A) &kp LS(E) &kp LS(I) &kp LS(RET)
-                &trans      &kp LS(Q) &kp LS(X) &kp LS(M) &kp LS(W) &kp LS(Z)   &kp LS(J) &kp LS(P) &kp UNDER &kp EXCL  &trans    &trans
+                &trans      &kp LS(Q) &kp LS(X) &kp LS(M) &kp LS(W) &kp LS(Z)   &kp LS(J) &kp LS(P) &trans    &kp QMARK &trans    &trans
                                                         &trans &trans &trans     &trans &trans &trans
             >;
         };
@@ -94,8 +94,8 @@
             // |      |  \  |  ~  |  #  |  $  |  %  |  :  |  ;  |  .  |  ?  |  `  | (") |
             //                 |     |     |        |        |     |     |
             bindings = <
-                &trans &kp SLASH &kp STAR   &kp PLUS    &kp EQL   &kp MINUS   &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead GRAVE
-                &trans &kp EXCL  &kp LT     &kp GT      &kp UNDER &dead DQT   &kp PIPE &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
+                &trans &kp SLASH &kp STAR   &kp PLUS    &kp EQL   &kp MINUS   &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead CARET
+                &trans &kp EXCL  &kp LT     &kp GT      &kp DQT   &dead UNDER &kp PIPE &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
                 &trans &kp NUHS  &dead TILD &kp HASH    &kp DLLR  &kp PRCNT   &kp COLN &kp SEMI  &kp DOT   &kp QMARK &dead GRAVE &dead LS(SQT)
                                                   &trans &trans &trans       &trans &trans &trans
             >;
