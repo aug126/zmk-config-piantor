@@ -58,14 +58,14 @@
             // |      |      |      |     |     |      |      |     |     |     |      |     |
             //                 |     | NUM |           |          |     |     |
             // --------------------------------------------------------------------------------
-            // | TAB  |  B  |  L   |  D  |  C  |  V   |   K  |  F  |  O  |  U   |  '  |  ^  |
+            // | TAB  |  B  |  L   |  D  |  C  |  V   |   K  |  F  |  O  |  U   |  '  |  `  |
             // | BSPC |  N  |  R   |  T  |  S  |  G   |   Y  |  H  |  A  |  E   |  I  | RET |
-            // |  _   |  Q  |  X   |  M  |  W  |  Z   |   J  |  P  |  .  |  ,   |  `  |  "  |
+            // |  _   |  Q  |  X   |  M  |  W  |  Z   |   J  |  P  |  .  |  ,   |  ^  |  "  |
             //        | SHORTCUT | SYMBOL | SHIFT     |   SPACE | STAR | SYSTEM |       // STAR would be ESC by default, SYMBOL should be TAB when a modifier is pressed.
             bindings = <
-                &kp TAB     &kp B       &kp L       &kp D       &lt 5 C     &kp V           &kp K   &lt 5 F     &kp O       &kp U       &kp SQT     &kp CARET
+                &kp TAB     &kp B       &kp L       &kp D       &lt 5 C     &kp V           &kp K   &lt 5 F     &kp O       &kp U       &kp SQT     &kp GRAVE
                 &kp BSPC    &hm LCTRL N &hm LGUI R  &hm LALT T  &lt 4 S     &kp G           &kp Y   &lt 4 H     &hm LALT A  &hm LGUI E  &hm LCTRL I &kp RET
-                &kp UNDER   &kp Q       &kp X       &kp M       &kp W       &kp Z           &kp J   &kp P       &kp DOT     &kp COMMA   &kp GRAVE   &kp LS(SQT)
+                &kp UNDER   &kp Q       &kp X       &kp M       &kp W       &kp Z           &kp J   &kp P       &kp DOT     &kp COMMA   &kp CARET   &kp LS(SQT)
                                                          &trans  &sl 2  &sl 1                   &kp SPACE  &lt 3 ESC  &mo 6
             >;
         };
@@ -75,7 +75,7 @@
             display-name = "SHIFT";
             // |      |     |     |     |     |     |     |     |     |     |     |     |
             // |      |     |     |     |     |     |     |     |     |     |     |     |
-            // |      |     |     |     |     |     |     |     |     |     |     |     |
+            // |      |     |     |     |     |     |     |     |     |  ?  |     |     |
             //                 |     |     |        |        |      |     |
             bindings = <
                 &kp LS(TAB) &kp LS(B) &kp LS(L) &kp LS(D) &kp LS(C) &kp LS(V)   &kp LS(K) &kp LS(F) &kp LS(O) &kp LS(U) &trans    &trans
@@ -89,15 +89,30 @@
         symbol_layer {
             display-name = "SYMBOL";
             // what about _ duplicated 
-            // |      |  /  |  *  |  +  |  =  |  -  |  @  |  &  |  {  |  }  |  '  |  ^  |
-            // |      |  !  |  <  |  >  |  "  |  _  |  |  |  (  |  )  |  [  |  ]  |     |
-            // |      |  \  |  ~  |  #  |  $  |  %  |  :  |  ;  |  .  |  ?  |  `  | (") |
+            // previous:
+            // |      |  /  |  *  |  +  |  =  |  -  |  @  |  &  |  {  |  }  |  '  |  `  |
+            // |      |  !  |  <  |  >  |  _  |  "  |  |  |  (  |  )  |  [  |  ]  |     |
+            // |      |  \  |  ~  |  #  |  $  |  %  |  :  |  ;  |  .  |  ?  |  ^  | (") |
             //                 |     |     |        |        |     |     |
+// suggestion:
+// following patterns should be easy to write:
+//  <></>
+//  /** */
+//  ->
+//  =>
+//  !=
+//  ~/
+//  +=
+//  -=
+// following chars should be accessible on number layer: -=+*/%$
+// |  ~  |  -  |  =  |  /  |  >  |  *   |   @  |  &  |  {  |  }  |  '  |  `  |
+// |     |  <  |  #  |  _  |  "  |  !   |   |  |  (  |  )  |  [  |  ]  |     |
+// |  \  |  £  |  €  |  $  |  +  |  %   |   :  |  ;  |  .  |  ?  |  ^  | (") |
             bindings = <
-                &trans &kp SLASH &kp STAR   &kp PLUS    &kp EQL   &kp MINUS   &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead CARET
-                &trans &kp EXCL  &kp LT     &kp GT      &kp DQT   &dead UNDER &kp PIPE &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
-                &trans &kp NUHS  &dead TILD &kp HASH    &kp DLLR  &kp PRCNT   &kp COLN &kp SEMI  &kp DOT   &kp QMARK &dead GRAVE &dead LS(SQT)
-                                                  &trans &trans &trans       &trans &trans &trans
+                &dead TILD   &kp MINUS    &kp EQL        &kp SLASH   &kp GT    &kp STAR        &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead GRAVE
+                &trans       &kp LT       &kp HASH       &kp UNDER   &dead DQT &kp EXCL        &kp PIPE &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
+                &kp NUHS     &kp LA(N3)   &kp LA(LS(N2)) &kp DLLR    &kp PLUS  &kp PRCNT       &kp COLN &kp SEMI  &kp DOT   &kp QMARK &dead CARET &dead LS(SQT)
+                                                            &trans &trans &trans              &trans &trans &trans
             >;
         };
 
@@ -105,14 +120,14 @@
         number_layer {
             display-name = "NUMBER"; 
             // the . , = - + / * ^ keys are transparent useful
-            // |      |  /  |  *  |  +  |  =  |  -  |     |      |     |     |     |  ^  |
+            // |      |  /  |  *  |  +  |  =  |  -  |     |      |     |     |     |     |
             // |      |  1  |  2  |  3  |  4  |  5  |  6  |  7   |  8  |  9  |  0  |     |
-            // |      |     |  £  |  €  |  $  |  %  |     |      |  .  |  ,  |     |     |
+            // |      |     |  £  |  €  |  $  |  %  |     |      |  .  |  ,  |  ^  |     |
             //                 |     |     |        |        |      |     |
             bindings = <
-                &trans &trans &trans     &trans         &trans   &trans       &kp K  &trans &trans &trans &trans &trans
-                &trans &kp N1 &kp N2     &kp N3         &hm 4 N4 &kp N5       &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &trans
-                &trans &trans &kp LA(N3) &kp LA(LS(N2)) &kp DLLR &trans       &kp J  &trans &trans &trans &trans &trans
+                &trans &trans &trans     &trans     &trans   &trans       &kp K  &trans &trans &trans &trans &trans
+                &trans &kp N1 &kp N2     &kp N3    &hm 4 N4 &kp N5       &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &trans
+                &trans &trans &trans     &trans    &trans   &trans       &kp J  &trans &trans &trans &trans &trans
                                             &trans &trans &kp LSHFT               &trans &trans &trans
             >;
         };
