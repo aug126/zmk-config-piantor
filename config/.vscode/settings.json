@@ -1,0 +1,27 @@
+{
+    "workbench.colorCustomizations": {
+        "[GitHub Dark]": {
+            "tab.activeBackground": "#ff5a3d19",
+            "tab.activeBorderTop": "#ff5a3d",
+            "list.filterMatchBorder": "#ff5a3d",
+            "list.inactiveFocusBackground": "#ff5a3d19",
+            "list.focusBackground": "#ff5a3d19",
+            "list.activeSelectionBackground": "#282e34",
+            "list.inactiveSelectionBackground": "#282e34",
+            "focusBorder": "#ff5a3d",
+            "inputOption.activeBorder": "#00000000",
+            "activityBar.activeBorder": "#ff5a3d",
+            "editorCursor.foreground": "#ff5a3d",
+            "list.activeSelectionForeground": "#ff5a3d",
+            "editorError.border": "#ff44008e",
+            "editorError.foreground": "#ff000000",
+            "list.inactiveSelectionForeground": "#ff5a3d",
+            "sideBarStickyScroll.background": "#30383f",
+            "peekViewEditorStickyScroll.background": "#30383f",
+            "editorStickyScroll.background": "#30383f"
+        },
+        "activityBar.background": "#521445",
+        "titleBar.activeBackground": "#721B60",
+        "titleBar.activeForeground": "#FDF8FC"
+    }
+}

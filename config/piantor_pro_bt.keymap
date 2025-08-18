@@ -13,6 +13,11 @@
     release-after-ms = <500>;
 };
 
+&sk {
+    release-after-ms = <500>;
+    quick-release;
+};
+
 / {
     chosen {
         zmk,physical-layout = &default_layout;
@@ -21,15 +26,26 @@
 
 / {
     behaviors {
+        // the home-row hold-tap to flavor "balanced" (Waits for tapping-term-ms before deciding. Safe, but sometimes feels laggy.)
         hm: home_row_mod {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
             require-prior-idle-ms = <120>;
-            tapping-term-ms = <220>;
+            tapping-term-ms = <200>;
             quick-tap-ms = <160>;
         };
+
+	// hold-tap to fravor "hold-preferred" (If another key is pressed before the timer expires, it chooses hold) useful to type Layer NUM instead of ESC
+	lt_hp: lt_hold_preferred {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&kp>;
+        };
+
 
         // key = `,`, on shift hold = ?
         mm_cma_qm: mm_comma_qestionmark {
@@ -52,10 +68,15 @@
         dead: dead {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
+
+	    // Make the macro complete quickly: (next try would be tap-ms=15, wait-ms=5)
+            wait-ms = <0>;   // no delay between bindings
+            tap-ms  = <12>;  // very short press duration (tweak 10–20)
+
             bindings
                 = <&macro_param_1to1>
-                , <&macro_tap &kp MACRO_PLACEHOLDER>
-                , <&macro_tap &kp SPACE>
+		, <&kp MACRO_PLACEHOLDER> // no delay between bindings
+		, <&kp SPACE>
                 ;
         };
     };
@@ -81,7 +102,7 @@
                 &kp TAB     &kp B       &kp L       &kp D       &lt 5 C     &kp V           &kp K   &lt 5 F     &kp O       &kp U       &kp SQT     &kp GRAVE
                 &kp BSPC    &hm LCTRL N &hm LGUI R  &hm LALT T  &lt 4 S     &kp G           &kp Y   &lt 4 H     &hm LALT A  &hm LGUI E  &hm LCTRL I &kp RET
                 &kp UNDER   &kp Q       &kp X       &kp M       &kp W       &kp Z           &kp J   &kp P       &kp DOT     &mm_cma_qm  &kp CARET   &kp LS(SQT)
-                                                &trans  &sl 2  &sk LSHIFT                   &kp SPACE  &lt 3 ESC  &mo 6
+                                        	   &trans   &sk LSHIFT   &sl 2                   &kp SPACE  &lt_hp 3 ESC  &mo 6
             >;
         };
 
