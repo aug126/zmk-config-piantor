@@ -124,14 +124,6 @@
         // #2
         symbol_layer {
             display-name = "SYMBOL";
-            // what about _ duplicated 
-            // previous:
-            // |      |  /  |  *  |  +  |  =  |  -  |  @  |  &  |  {  |  }  |  '  |  `  |
-            // |      |  !  |  <  |  >  |  _  |  "  |  |  |  (  |  )  |  [  |  ]  |     |
-            // |      |  \  |  ~  |  #  |  $  |  %  |  :  |  ;  |  .  |  ?  |  ^  | (") |
-            //                 |     |     |        |        |     |     |
-
-// suggestion:
 // following patterns should be easy to write:
 //  <></>
 //  /** */
@@ -141,15 +133,28 @@
 //  ~/
 //  +=
 //  -=
-// following chars should be accessible on number layer: -=+*/%$
+            // 0) current
+            // |      |  /  |  *  |  +  |  =  |  -  |  @  |  &  |  {  |  }  |  '  |  `  |
+            // |      |  !  |  <  |  >  |  _  |  "  |  |  |  (  |  )  |  [  |  ]  |     |
+            // |      |  \  |  ~  |  #  |  $  |  %  |  :  |  ;  |  .  |  ?  |  ^  | (") |
+            //                 |     |     |        |        |     |     |
+
+// suggestions:
+// 1) following chars should be accessible on number layer: -=+*/%$
 // |  ~  |  -  |  =  |  /  |  >  |  *   |   @  |  &  |  {  |  }  |  '  |  `  |
 // |     |  <  |  #  |  _  |  "  |  !   |   |  |  (  |  )  |  [  |  ]  |     |
 // |  \  |  £  |  €  |  $  |  +  |  %   |   :  |  ;  |  .  |  ?  |  ^  | (") |
+
+// 2) ease the -> bigram
+// |  ~  |  *  |  =  |  -  |  >  |  /   |   @  |  &  |  {  |  }  |  '  |  `  |
+// |     |  <  |  #  |  _  |  "  |  !   |   |  |  (  |  )  |  [  |  ]  |     |
+// |  £  |  €  |  $  |  \  |  +  |  %   |   :  |  ;  |  .  |  ?  |  ^  | (") |
+
             bindings = <
-                &dead TILD   &kp MINUS    &kp EQL        &kp SLASH   &kp GT    &kp STAR        &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead GRAVE
-                &trans       &kp LT       &kp HASH       &kp UNDER   &dead DQT &kp EXCL        &kp PIPE &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
-                &kp NUHS     &kp LA(N3)   &kp LA(LS(N2)) &kp DLLR    &kp PLUS  &kp PRCNT       &kp COLN &kp SEMI  &kp DOT   &kp QMARK &dead CARET &dead LS(SQT)
-                                                            &trans &trans &trans              &trans &trans &trans
+                &dead TILD   &kp STAR       &kp EQL    &kp MINUS   &kp GT    &kp SLASH        &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead GRAVE
+                &trans       &kp LT         &kp HASH   &kp UNDER   &dead DQT &kp EXCL        &kp PIPE &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
+                &kp LA(N3)   &kp LA(LS(N2)) &kp DLLR   &kp NUHS    &kp PLUS  &kp PRCNT       &kp COLN &kp SEMI  &kp DOT   &kp QMARK &dead CARET &dead LS(SQT)
+                                                              &trans &trans &trans              &trans &trans &trans
             >;
         };
 
