@@ -102,7 +102,7 @@
             bindings
                 = <&macro_param_1to1>
 		, <&kp MACRO_PLACEHOLDER> // no delay between bindings
-		, <&kp macro_param_2to1>
+		, <&macro_param_2to1>
 		, <&kp MACRO_PLACEHOLDER>
                 ;
         };
