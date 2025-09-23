@@ -119,10 +119,10 @@
             //        |         |  [---]  | SYMBOL    |   SPACE | Esc/Num | SYSTEM |
 
            bindings = <
-                &mm_tab_i   &kp B       &kp L       &kp D       &lt 5 C     &kp V           &kp K   &lt 5 F    &kp O       &kp U       &dead SQT   &sl 1
-                &BSPC       &hm LCTRL N &hm LGUI R  &hm LALT T  &lt 4 S     &kp G           &kp Y   &kp H      &hm LALT A  &hm LGUI E  &hm LCTRL I &kp RET
+                &mm_tab_i  &kp B       &kp L       &kp D       &lt 5 C     &kp V           &kp K   &lt 5 F    &kp O       &kp U       &dead SQT   &sl 1
+                &kp BSPC   &hm LCTRL N &hm LGUI R  &hm LALT T  &lt 4 S     &kp G           &kp Y   &kp H      &hm LALT A  &hm LGUI E  &hm LCTRL I &kp RET
                 &trans     &kp Q       &kp X       &kp M       &kp W       &kp Z           &kp J   &kp P      &kp DOT     &mm_cma_qm  &sk LSHIFT  &sk LSHIFT
-                                        	   &trans   &sk LSHIFT   &sl 2                   &kp SPACE  &lt_hp 3 ESC  &mo 6
+                                                &trans   &sk LSHIFT   &sl 2                   &kp SPACE  &lt_hp 3 ESC  &mo 6
             >;
         };
 
