@@ -91,6 +91,22 @@
 		, <&kp SPACE>
                 ;
         };
+	accent: dead_accent {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
+
+	    // Make the macro complete quickly: (next try would be tap-ms=15, wait-ms=5)
+            wait-ms = <0>;   // no delay between bindings
+            tap-ms  = <12>;  // very short press duration (tweak 10–20)
+
+            bindings
+                = <&macro_param_1to1>
+		, <&kp MACRO_PLACEHOLDER> // no delay between bindings
+		, <&kp macro_param_2to1>
+		, <&kp MACRO_PLACEHOLDER>
+                ;
+        };
+
     };
 };
 
@@ -132,13 +148,13 @@
  	// suggestion accents layer:
             // |    |     |      |     |  Ç  |      |      |  Ù  |  Ô  |  Î   |     |        |
             // |    |     |      |     |     |      |   Ê  |  É  |  À  |  È   |     | RET |
-            // |    |     |      |     |     |      |      |  Û  |  Ë  |      |     |     |
+            // |    |     |      |     |     |      |   Ë  |  Û  |     |      |     |     |
             //                 |     |     |        |        |      |     |
             bindings = <
-                &trans   &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans  &trans
-                &trans   &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans  &trans
-                &trans   &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans  &trans
-                                    &trans &trans &trans         &trans &trans &trans
+                &trans   &trans &trans &trans &accent SQT C &trans            &trans          &accent GRAVE U &accent CARET O &accent CARET I &trans   &trans
+                &trans   &trans &trans &trans &trans        &trans            &accent CARET E &accent SQT E   &accent GRAVE A &accent GRAVE E &trans   &trans
+                &trans   &trans &trans &trans &trans        &trans            &accent TILD E  &accent CARET U &trans          &trans          &trans   &trans
+                                            &trans &trans &trans                 &trans &trans &trans
             >;
         };
 
