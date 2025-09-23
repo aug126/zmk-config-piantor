@@ -268,9 +268,9 @@
         app_layer {
             display-name = "APP";
             bindings = <
-                &cas TAB    &cas B &cas L &cas D &cas C &cas V           &cas K   &cas F   &cas O   &cas U   &cas SQT &trans
-                &cas BSPC   &cas N &cas R &cas T &cas S &cas G           &cas Y   &cas H   &cas A   &cas E   &cas I   &cas RET
-                &trans      &cas Q &cas X &cas M &cas W &cas Z           &cas J   &cas P   &cas DOT &cas CMA &trans   &trans
+                &cas TAB    &cas B &cas L &cas D &cas C &cas V           &cas K   &cas F   &cas O   &cas U     &cas SQT &trans
+                &cas BSPC   &cas N &cas R &cas T &cas S &cas G           &cas Y   &cas H   &cas A   &cas E     &cas I   &cas RET
+                &trans      &cas Q &cas X &cas M &cas W &cas Z           &cas J   &cas P   &cas DOT &cas COMMA &trans   &trans
                        &trans     &trans     &sl SYM                   &kp SPACE     &lt_hp NUM ESC     &mo SYS
             >;
         };
@@ -279,9 +279,9 @@
         workspace_layer {
             display-name = "WSP";
             bindings = <
-                &as TAB    &as B &as L &as D &as C &as V           &as K   &as F   &as O   &as U   &as SQT &trans
-                &as BSPC   &as N &as R &as T &as S &as G           &as Y   &as H   &as A   &as E   &as I   &as RET
-                &trans     &as Q &as X &as M &as W &as Z           &as J   &as P   &as DOT &as CMA &trans  &trans
+                &as TAB    &as B &as L &as D &as C &as V           &as K   &as F   &as O   &as U     &as SQT &trans
+                &as BSPC   &as N &as R &as T &as S &as G           &as Y   &as H   &as A   &as E     &as I   &as RET
+                &trans     &as Q &as X &as M &as W &as Z           &as J   &as P   &as DOT &as COMMA &trans  &trans
                        &trans     &trans     &sl SYM                   &kp SPACE     &lt_hp NUM ESC     &mo SYS
             >;
         };
@@ -290,9 +290,9 @@
         tmux_layer {
             display-name = "TMX";
             bindings = <
-                &ca TAB    &ca B &ca L &ca D &ca C &ca V           &ca K   &ca F   &ca O   &ca U   &ca SQT &trans
-                &ca BSPC   &ca N &ca R &ca T &ca S &ca G           &ca Y   &ca H   &ca A   &ca E   &ca I   &ca RET
-                &trans     &ca Q &ca X &ca M &ca W &ca Z           &ca J   &ca P   &ca DOT &ca CMA &trans  &trans
+                &ca TAB    &ca B &ca L &ca D &ca C &ca V           &ca K   &ca F   &ca O   &ca U     &ca SQT &trans
+                &ca BSPC   &ca N &ca R &ca T &ca S &ca G           &ca Y   &ca H   &ca A   &ca E     &ca I   &ca RET
+                &trans     &ca Q &ca X &ca M &ca W &ca Z           &ca J   &ca P   &ca DOT &ca COMMA &trans  &trans
                        &trans     &trans     &sl SYM                   &kp SPACE     &lt_hp NUM ESC     &mo SYS
             >;
         };
