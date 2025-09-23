@@ -9,6 +9,16 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
 
+// LAYERS
+#define ACC 1
+#define SYM 2
+#define NUM 3
+#define NAV 4
+#define APP 5
+#define WSP 6
+#define TMX 7
+#define SYS 8
+
 &sl {
     release-after-ms = <500>;
 };
@@ -32,9 +42,20 @@
             #binding-cells = <2>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
-            require-prior-idle-ms = <120>;
+            require-prior-idle-ms = <140>;
             tapping-term-ms = <200>;
-            quick-tap-ms = <160>;
+            // quick-tap-ms = <160>;
+        };
+
+        // the home-row layer-tap to flavor "balanced" (Waits for tapping-term-ms before deciding. Safe, but sometimes feels laggy.)
+	// the default &lt could be good as well?
+	hl: home_row_layer {
+            compatible = "zmk,behavior-layer-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            bindings = <&mo>, <&kp>;
+            require-prior-idle-ms = <140>;
+            tapping-term-ms = <200>;
         };
 
 	// hold-tap to fravor "hold-preferred" (If another key is pressed before the timer expires, it chooses hold) useful to type Layer NUM instead of ESC
@@ -91,6 +112,7 @@
 		, <&kp SPACE>
                 ;
         };
+
 	accent: dead_accent {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
@@ -107,6 +129,21 @@
                 ;
         };
 
+        cas: ctrl_alt_shift {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&kp LS(LC(LA(MACRO_PLACEHOLDER)))>;
+        };
+        as: alt_shift {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&kp LS(LA(MACRO_PLACEHOLDER))>;
+        };
+        ca: ctrl_alt {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&kp LC(LA(MACRO_PLACEHOLDER))>;
+        };
     };
 };
 
@@ -134,11 +171,16 @@
             // | [--] |  Q  |  X   |  M  |  W  |  Z   |   J  |  P  |  .  | , ?  | SHIFT | SHIFT |
             //        |         |  [---]  | SYMBOL    |   SPACE | Esc/Num | SYSTEM |
 
+	// Tap-Behavior suggestion:
+            // |      | WSP | GUI | ALT | TMX |      |      |     | ALT | GUI |     |     |
+            // |      | APP | SHT | CTL | NAV |      |      |     | CTL |     |     |     |
+            // |      |     |     |     |     |      |      |     |     |     |     |     |
+
            bindings = <
-                &mm_tab_i  &kp B       &kp L       &kp D       &lt 5 C     &kp V           &kp K   &lt 5 F    &kp O       &kp U       &dead SQT   &sl 1
-                &kp BSPC   &hm LCTRL N &hm LGUI R  &hm LALT T  &lt 4 S     &kp G           &kp Y   &kp H      &hm LALT A  &hm LGUI E  &hm LCTRL I &kp RET
-                &trans     &kp Q       &kp X       &kp M       &kp W       &kp Z           &kp J   &kp P      &kp DOT     &mm_cma_qm  &sk LSHIFT  &sk LSHIFT
-                                                &trans   &sk LSHIFT   &sl 2                   &kp SPACE  &lt_hp 3 ESC  &mo 6
+                &mm_tab_i  &hl WSP B &hm LGUI L   &hm LALT D  &hl TMX C &kp V           &kp K   &kp F   &hm LALT O  &hm LGUI U &dead SQT  &sl ACC
+                &kp BSPC   &hl APP N &hm LSHIFT R &hm LCTRL T &hl NAV S &kp G           &kp Y   &kp H   &hm LCTRL A &kp E      &kp I      &kp RET
+                &trans     &kp Q     &kp X        &kp M       &kp W     &kp Z           &kp J   &kp P   &kp DOT     &mm_cma_qm &sk LSHIFT &sk LSHIFT
+                                                &trans   &trans   &sl SYM                   &kp SPACE  &lt_hp NUM ESC  &mo SYS
             >;
         };
 
@@ -160,7 +202,7 @@
 
         // #2
         symbol_layer {
-            display-name = "SYMBOL";
+            display-name = "SYM";
 // improvement still possible. 
 // following patterns should be easy to write:
 //  <></>
@@ -193,16 +235,16 @@
 
         // #3
         number_layer {
-            display-name = "NUMBER"; 
+            display-name = "NUM"; 
             // the . , = - + / * ^ keys are transparent useful
             // |  ~  |  *  |  =  |  -  |  >  |  /  |     |      |     |     |     |     |
             // |     |  1  |  2  |  3  |  4  |  5  |  6  |  7   |  8  |  9  |  0  |     |
             // |  £  |  ^  |  $  |  €  |  +  |  %  |     |      |  .  |  ,  |  ^  |     |
             //                 |     |     |        |        |      |     |
             bindings = <
-                &dead TILD &kp STAR    &kp EQL  &kp MINUS      &kp GT   &kp SLASH       &trans &trans &trans &trans &trans &trans
-                &trans     &kp N1      &kp N2   &kp N3         &hm 4 N4 &kp N5          &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &trans
-                &kp LA(N3) &dead CARET &kp DLLR &kp LA(LS(N2)) &kp PLUS &kp PRCNT       &trans &trans &trans &trans &trans &trans
+                &dead TILD &kp STAR    &kp EQL  &kp MINUS      &kp GT     &kp SLASH       &trans &trans &trans &trans &trans &trans
+                &trans     &kp N1      &kp N2   &kp N3         &hl NAV N4 &kp N5          &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &trans
+                &kp LA(N3) &dead CARET &kp DLLR &kp LA(LS(N2)) &kp PLUS   &kp PRCNT       &trans &trans &trans &trans &trans &trans
                                                       &trans &trans &kp LSHFT               &trans &trans &trans
             >;
         };
@@ -222,20 +264,42 @@
             >;
         };
 
-        // #5
-        extra_layer_2 {
-            display-name = "WIN";
+        // #5 C-A-S-<key>
+        app_layer {
+            display-name = "APP";
             bindings = <
-                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-                                     &trans &trans &trans  &trans &trans &trans
+                &cas TAB    &cas B &cas L &cas D &cas C &cas V           &cas K   &cas F   &cas O   &cas U   &cas SQT &trans
+                &cas BSPC   &cas N &cas R &cas T &cas S &cas G           &cas Y   &cas H   &cas A   &cas E   &cas I   &cas RET
+                &trans      &cas Q &cas X &cas M &cas W &cas Z           &cas J   &cas P   &cas DOT &cas CMA &trans   &trans
+                       &trans     &trans     &sl SYM                   &kp SPACE     &lt_hp NUM ESC     &mo SYS
             >;
         };
 
-        // #6
+        // #6 A-S-<key>
+        workspace_layer {
+            display-name = "WSP";
+            bindings = <
+                &as TAB    &as B &as L &as D &as C &as V           &as K   &as F   &as O   &as U   &as SQT &trans
+                &as BSPC   &as N &as R &as T &as S &as G           &as Y   &as H   &as A   &as E   &as I   &as RET
+                &trans     &as Q &as X &as M &as W &as Z           &as J   &as P   &as DOT &as CMA &trans  &trans
+                       &trans     &trans     &sl SYM                   &kp SPACE     &lt_hp NUM ESC     &mo SYS
+            >;
+        };
+
+        // #7 C-A-<key>
+        tmux_layer {
+            display-name = "TMX";
+            bindings = <
+                &ca TAB    &ca B &ca L &ca D &ca C &ca V           &ca K   &ca F   &ca O   &ca U   &ca SQT &trans
+                &ca BSPC   &ca N &ca R &ca T &ca S &ca G           &ca Y   &ca H   &ca A   &ca E   &ca I   &ca RET
+                &trans     &ca Q &ca X &ca M &ca W &ca Z           &ca J   &ca P   &ca DOT &ca CMA &trans  &trans
+                       &trans     &trans     &sl SYM                   &kp SPACE     &lt_hp NUM ESC     &mo SYS
+            >;
+        };
+
+        // #8
         system_layer {
-            display-name = "SYSTEM";
+            display-name = "SYS";
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5            |  6  |  7  |  8  |  9  |  0  | BSPC |
             // | CTRL | BT1 | BT2 | BT3 | BT4 | BT5           | LFT | DWN |  UP | RGT |     |      |
@@ -249,7 +313,7 @@
             >;
         };
 
-        // #7
+        // #9
         extra_layer {
             display-name = "EXTRA";
             bindings = <
