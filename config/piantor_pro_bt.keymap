@@ -50,7 +50,7 @@
         // the home-row layer-tap to flavor "balanced" (Waits for tapping-term-ms before deciding. Safe, but sometimes feels laggy.)
 	// the default &lt could be good as well?
 	hl: home_row_layer {
-            compatible = "zmk,behavior-layer-tap";
+            compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             bindings = <&mo>, <&kp>;
@@ -71,7 +71,6 @@
         // key = `,`, on shift hold = ?
         mm_cma_qm: mm_comma_to_qestionmark {
             compatible = "zmk,behavior-mod-morph";
-            label = "MM_QMARK";
             #binding-cells = <0>;
             // react when either Shift is held:
             mods = <(MOD_LSFT|MOD_RSFT)>;
@@ -84,7 +83,6 @@
         // key = `BSPC`, on shift hold = shift-I
         mm_tab_i: mm_tab_to_maj_i {
             compatible = "zmk,behavior-mod-morph";
-            label = "MM_TAB_I";
             #binding-cells = <0>;
             // react when either Shift is held:
             mods = <(MOD_LSFT|MOD_RSFT)>;
