@@ -127,35 +127,46 @@
                 ;
         };
 
+	// TODO thouldn't the macro be on the &mo layer ? so some mods are activated before the layer
+    /*  = <&macro_press &mo 1 &kp LSHFT> */
+    /* , <&macro_pause_for_release> */
+    /* , <&macro_release &mo 1 &kp LSHFT> */
+
         cas: ctrl_alt_shift {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-	    wait-ms = <10>;
-	    tap-ms = <10>;
-	    bindings = <&macro_param_1to1>
-	    	     , <&macro_press &kp LSHIFT &kp LCTRL &kp LALT>
-		     , <&macro_tap &kp MACRO_PLACEHOLDER>
-		     , <&macro_release &kp LSHIFT &kp LCTRL &kp LALT>;
+		compatible = "zmk,behavior-macro-one-param";
+		#binding-cells = <1>;
+		// Give the OS time to see the modifiers before/after the tap
+		wait-ms = <35>;   // delay between each action
+		tap-ms  = <50>;   // how long the "tap" is held
+
+		bindings = <&macro_param_1to1>
+			, <&macro_press &kp LSHIFT &kp LCTRL &kp LALT>
+			, <&macro_tap &kp MACRO_PLACEHOLDER>
+			, <&macro_release &kp LSHIFT &kp LCTRL &kp LALT>;
         };
         as: alt_shift {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-	    wait-ms = <10>;
-	    tap-ms = <10>;
-	    bindings = <&macro_param_1to1>
-	    	     , <&macro_press &kp LSHIFT &kp LALT>
-		     , <&macro_tap &kp MACRO_PLACEHOLDER>
-		     , <&macro_release &kp LSHIFT &kp LALT>;
+		compatible = "zmk,behavior-macro-one-param";
+		#binding-cells = <1>;
+		// Give the OS time to see the modifiers before/after the tap
+		wait-ms = <35>;   // delay between each action
+		tap-ms  = <50>;   // how long the "tap" is held
+
+		bindings = <&macro_param_1to1>
+			, <&macro_press &kp LSHIFT &kp LALT>
+			, <&macro_tap &kp G> // TEST
+			, <&macro_release &kp LSHIFT &kp LALT>;
         };
         ca: ctrl_alt {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-	    wait-ms = <10>;
-	    tap-ms = <10>;
-	    bindings = <&macro_param_1to1>
-	             , <&macro_press &kp LCTRL &kp LALT>
-		     , <&macro_tap &kp MACRO_PLACEHOLDER>
-		     , <&macro_release &kp LCTRL &kp LALT>;
+		compatible = "zmk,behavior-macro-one-param";
+		#binding-cells = <1>;
+		// Give the OS time to see the modifiers before/after the tap
+		wait-ms = <35>;   // delay between each action
+		tap-ms  = <50>;   // how long the "tap" is held
+
+		bindings = <&macro_param_1to1>
+			, <&macro_press &kp LCTRL &kp LALT>
+			, <&macro_tap &kp MACRO_PLACEHOLDER>
+			, <&macro_release &kp LCTRL &kp LALT>;
         };
     };
 };
