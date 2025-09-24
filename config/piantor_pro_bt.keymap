@@ -128,6 +128,7 @@
         };
 
 	// TODO thouldn't the macro be on the &mo layer ? so some mods are activated before the layer
+		// But how to combine with a hold-tab behavior?
     /*  = <&macro_press &mo 1 &kp LSHFT> */
     /* , <&macro_pause_for_release> */
     /* , <&macro_release &mo 1 &kp LSHFT> */
@@ -257,12 +258,12 @@
 // current
 // |  ~  |  *  |  =  |  -  |  >  |  /   |   @  |  &  |  {  |  }  |  '  |  `  |
 // |     |  <  |  #  |  _  |  "  |  !   |   |  |  (  |  )  |  [  |  ]  |     |
-// |     |  ^  |  $  |  \  |  +  |  %   |   ;  |  :  |  .  |  ?  |     |     |
+// |     |  ^  |  $  |  \  |  +  |  %   |   :  |  ;  |  .  |  ?  |     |     |
 
             bindings = <
                 &dead TILD   &kp STAR     &kp EQL    &kp MINUS  &kp GT    &kp SLASH       &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead GRAVE
                 &trans       &kp LT       &kp HASH   &kp UNDER  &dead DQT &kp EXCL        &kp PIPE &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
-                &trans       &dead CARET  &kp DLLR   &kp NUHS   &kp PLUS  &kp PRCNT       &kp SEMI &kp COLN  &kp DOT   &kp QMARK &trans      &trans
+                &trans       &dead CARET  &kp DLLR   &kp NUHS   &kp PLUS  &kp PRCNT       &kp COLN &kp SEMI  &kp DOT   &kp QMARK &trans      &trans
                                                           &trans &trans &trans              &trans &trans &trans
             >;
         };
@@ -303,7 +304,7 @@
             display-name = "APP";
             bindings = <
                 &cas TAB    &cas B &cas L &cas D &cas C &cas V           &cas K   &cas F   &cas O   &cas U     &cas SQT &trans
-                &cas BSPC   &cas N &cas R &cas T &cas S &cas G           &cas Y   &cas H   &cas A   &cas E     &cas I   &cas RET
+                &cas BSPC   &kp N &kp LC(LA(LS(R))) &kp LC(LA(LS(T))) &kp LC(LA(LS(S))) &kp LC(LA(LS(G)))           &cas Y   &cas H   &cas A   &cas E     &cas I   &cas RET
                 &trans      &cas Q &cas X &cas M &cas W &cas Z           &cas J   &cas P   &cas DOT &cas COMMA &trans   &trans
                        &trans     &trans     &sl SYM                   &kp SPACE     &lt_hp NUM ESC     &mo SYS
             >;
