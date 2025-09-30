@@ -188,9 +188,9 @@
 
            bindings = <
                 &kp TAB    &hl WSP B &hm LGUI L   &hm LALT D  &hl TMX C &kp V           &kp K   &kp F   &hm LALT O  &hm LGUI U  &dead SQT  &sl ACC
-                &kp BSPC   &hl APP N &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y   &kp H   &hm LCTRL A &hm LSHFT E &kp I      &kp RET
+                &kp BSPC   &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y   &kp H   &hm LCTRL A &hm LSHFT E &kp I      &kp RET
                 &trans     &kp Q     &kp X        &kp M       &kp W     &kp Z           &kp J   &kp P   &kp DOT     &mm_cma_qm  &sk LSHFT &sk LSHFT
-                                                &trans   &trans   &sl SYM                   &kp SPACE  &lt_hp NUM ESC  &mo SYS
+                                              &trans   &sl APP   &sl SYM                   &kp SPACE  &lt_hp NUM ESC  &mo SYS
             >;
         };
 
@@ -278,10 +278,10 @@
         app_layer {
             display-name = "APP";
             bindings = <
-                &kp TAB  &kp LC(LA(LS(B))) &kp LC(LA(LS(L))) &kp LC(LA(LS(D))) &kp LC(LA(LS(C))) &kp LC(LA(LS(V)))           &kp LC(LA(LS(K)))   &kp LC(LA(LS(F)))   &kp LC(LA(LS(O)))   &hm LGUI LC(LA(LS(U))) &kp LC(LA(LS(SQT))) &trans
-                &kp BSPC &kp N             &kp LC(LA(LS(R))) &kp LC(LA(LS(T))) &kp LC(LA(LS(S))) &kp LC(LA(LS(G)))           &kp LC(LA(LS(Y)))   &kp LC(LA(LS(H)))   &kp LC(LA(LS(A)))   &kp LC(LA(LS(E)))      &kp LC(LA(LS(I)))   &kp RET
-                &trans   &kp Q             &kp LC(LA(LS(X))) &kp LC(LA(LS(M))) &kp LC(LA(LS(W))) &kp LC(LA(LS(Z)))           &kp LC(LA(LS(J)))   &kp LC(LA(LS(P)))   &kp LC(LA(LS(DOT))) &kp LC(LA(LS(COMMA)))  &trans              &trans
-                       &trans     &trans     &sl SYM                   &kp SPACE     &lt_hp NUM ESC     &mo SYS
+                &kp TAB  &kp LC(LA(LG(B))) &kp LC(LA(LG(L))) &kp LC(LA(LG(D))) &kp LC(LA(LG(C))) &kp LC(LA(LG(V)))           &kp LC(LA(LG(K)))   &kp LC(LA(LG(F)))   &kp LC(LA(LG(O)))   &hm LGUI LC(LA(LG(U))) &kp LC(LA(LG(SQT))) &trans
+                &kp BSPC &kp LC(LA(LG(N))) &kp LC(LA(LG(R))) &kp LC(LA(LG(T))) &kp LC(LA(LG(S))) &kp LC(LA(LG(G)))           &kp LC(LA(LG(Y)))   &kp LC(LA(LG(H)))   &kp LC(LA(LG(A)))   &kp LC(LA(LG(E)))      &kp LC(LA(LG(I)))   &kp RET
+                &trans   &kp LC(LA(LG(Q))) &kp LC(LA(LG(X))) &kp LC(LA(LG(M))) &kp LC(LA(LG(W))) &kp LC(LA(LG(Z)))           &kp LC(LA(LG(J)))   &kp LC(LA(LG(P)))   &kp LC(LA(LG(DOT))) &kp LC(LA(LG(COMMA)))  &trans              &trans
+                       							         &trans     &trans     &sl SYM                   &kp SPACE     &lt_hp NUM ESC     &mo SYS
             >;
         };
 
