@@ -80,19 +80,6 @@
             // ensure the Shift you hold stays applied to the "/" press
             keep-mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-
-        // key = `Q`, on shift hold = `.`
-        mm_q_dot: mm_q_to_dot {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            // react when either Shift is held:
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-            // no shift -> "Q", with shift -> "."
-            bindings = <&kp Q>, <&kp DOT>;
-            // ensure the Shift you hold stays applied to the "/" press
-            keep-mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
    };
 };
 
@@ -177,7 +164,7 @@
            bindings = <
                 &kp TAB    &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &kp F   &hm LALT O  &hm LGUI U  &kp J     &sl ACC
                 &kp BSPC   &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H   &hm LCTRL A &hm LSHFT E &kp I     &kp RET
-                &sk LSHFT  &sk LSHFT &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P   &mm_q_dot   &mm_cma_qm  &sk LSHFT &sk LSHFT
+                &sk LSHFT  &sk LSHFT &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P   &kp Q       &mm_cma_qm  &sk LSHFT &sk LSHFT
                                               &trans   &sl APP   &sl SYM                    &kp SPACE  &lt_hp NUM ESC  &mo SYS
             >;
         };
