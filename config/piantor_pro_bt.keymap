@@ -156,16 +156,16 @@
             // --------------------------------------------------------------------------------
 	// REALITY: ISO/AINSI prevent right/left shift usages..
             // --------------------------------------------------------------------------------
-        // | TAB  s-I |  B  |  L   |  D  |  C  |  V   |   K  |  F  |  O  |  U   |  '      | [ACCENT] |
+        // | TAB  s-I |  B  |  L   |  D  |  C  |  V   |   '  |  F  |  O  |  U   |  J      | [ACCENT] |
             // | BSPC |  N  |  R   |  T  |  S  |  G   |   Y  |  H  |  A  |  E   |  I      | RET |
-            // | [--] |  Q  |  X   |  M  |  W  |  Z   |   J  |  P  |  .  | , ?  | SHIFT | SHIFT |
+            // | [--] |  Q  |  X   |  M  |  W  |  Z   |   K  |  P  |  .  | , ?  | SHIFT | SHIFT |
             //        |         |  APP  | SYMBOL      |     SPACE | Esc/Num | SYSTEM |
 
            bindings = <
-                &kp TAB    &hl WSP B &hm LGUI L   &hm LALT D  &hl TMX C &kp V           &kp K   &kp F   &hm LALT O  &hm LGUI U  &dead SQT  &sl ACC
-                &kp BSPC   &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y   &kp H   &hm LCTRL A &hm LSHFT E &kp I      &kp RET
-                &trans     &kp Q     &kp X        &kp M       &kp W     &kp Z           &kp J   &kp P   &kp DOT     &mm_cma_qm  &sk LSHFT &sk LSHFT
-                                              &trans   &sl APP   &sl SYM                   &kp SPACE  &lt_hp NUM ESC  &mo SYS
+                &kp TAB    &hl WSP B &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &kp F   &hm LALT O  &hm LGUI U  &kp J  &sl ACC
+                &kp BSPC   &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H   &hm LCTRL A &hm LSHFT E &kp I      &kp RET
+                &trans     &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P   &kp DOT     &mm_cma_qm  &sk LSHFT &sk LSHFT
+                                              &trans   &sl APP   &sl SYM                    &kp SPACE  &lt_hp NUM ESC  &mo SYS
             >;
         };
 
@@ -173,14 +173,14 @@
         accent_layer {
             display-name = "ACCENT";
  	// suggestion accents layer:
-            // |    |     |      |     |  Ç  |      |      |  Ù  |  Ô  |  Î   |     |        |
-            // |    |     |      |     |     |      |   Ê  |  É  |  À  |  È   |     | RET |
+            // |    |     |      |     |  Ç  |      |      |  Ù  |  Ô  |  Î   |     |     |
+            // |    |     |      |     |     |      |   Ê  |  À  |  É  |  È   |     | RET |
             // |    |     |      |     |     |      |   Ë  |  Û  |     |      |     |     |
             //                 |     |     |        |        |      |     |
             bindings = <
                 &trans   &trans &trans &trans &accent SQT C &trans            &trans          &accent GRAVE U &accent CARET O &accent CARET I &trans   &trans
-                &trans   &trans &trans &trans &trans        &trans            &accent CARET E &accent SQT E   &accent GRAVE A &accent GRAVE E &trans   &trans
-                &trans   &trans &trans &trans &trans        &trans            &accent TILD E  &accent CARET U &trans          &trans          &trans   &trans
+                &trans   &trans &trans &trans &trans        &trans            &accent CARET E &accent GRAVE A &accent SQT E   &accent GRAVE E &trans   &trans
+                &trans   &trans &trans &trans &trans        &trans            &accent TILD E  &accent CARET U &trans          &trans &trans   &trans
                                             &trans &trans &trans                 &trans &trans &trans
             >;
         };
@@ -208,12 +208,12 @@
 // current
 // |  ~  |  *  |  =  |  -  |  >  |  /   |   @  |  &  |  {  |  }  |  '  |  `  |
 // |     |  <  |  #  |  _  |  "  |  !   |   |  |  (  |  )  |  [  |  ]  |     |
-// |     |  ^  |  $  |  \  |  +  |  %   |   :  |  ;  |  .  |  ?  |     |     |
+// |     |  ^  |  $  |  \  |  +  |  %   |   :  |  ;  |  .  |  ?  |  ,  |     |
 
             bindings = <
                 &dead TILD   &kp STAR     &kp EQL    &kp MINUS  &kp GT    &kp SLASH       &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead GRAVE
                 &trans       &kp LT       &kp HASH   &kp UNDER  &dead DQT &kp EXCL        &kp PIPE &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
-                &trans       &dead CARET  &kp DLLR   &kp NUHS   &kp PLUS  &kp PRCNT       &kp COLN &kp SEMI  &kp DOT   &kp QMARK &trans      &trans
+                &trans       &dead CARET  &kp DLLR   &kp NUHS   &kp PLUS  &kp PRCNT       &kp COLN &kp SEMI  &kp DOT   &kp QMARK &kp COMMA   &trans
                                                           &trans &trans &trans              &trans &trans &trans
             >;
         };
