@@ -175,8 +175,8 @@
             //        |         |  APP  | SYMBOL      |     SPACE | Esc/Num | SYSTEM |
 
            bindings = <
-                &kp TAB    &hl WSP B &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &kp F   &hm LALT O  &hm LGUI U  &kp J  &sl ACC
-                &kp BSPC   &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H   &hm LCTRL A &hm LSHFT E &kp I      &kp RET
+                &kp TAB    &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &kp F   &hm LALT O  &hm LGUI U  &kp J     &sl ACC
+                &kp BSPC   &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H   &hm LCTRL A &hm LSHFT E &kp I     &kp RET
                 &sk LSHFT  &sk LSHFT &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P   &mm_q_dot   &mm_cma_qm  &sk LSHFT &sk LSHFT
                                               &trans   &sl APP   &sl SYM                    &kp SPACE  &lt_hp NUM ESC  &mo SYS
             >;
