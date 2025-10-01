@@ -253,9 +253,9 @@
         app_layer {
             display-name = "APP";
             bindings = <
-                &kp TAB  &kp LC(LA(LG(B))) &kp LC(LA(LG(L))) &kp LC(LA(LG(D))) &kp LC(LA(LG(C))) &kp LC(LA(LG(V)))           &kp LC(LA(LG(K)))   &kp LC(LA(LG(F)))   &kp LC(LA(LG(O)))   &hm LGUI LC(LA(LG(U)))  &kp LC(LA(LG(SQT))) &trans
+                &kp TAB  &kp LC(LA(LG(B))) &kp LC(LA(LG(L))) &kp LC(LA(LG(D))) &kp LC(LA(LG(C))) &kp LC(LA(LG(V)))           &kp LC(LA(LG(SQT)))   &kp LC(LA(LG(F)))   &kp LC(LA(LG(O)))   &hm LGUI LC(LA(LG(U)))  &kp LC(LA(LG(J))) &trans
                 &kp BSPC &kp LC(LA(LG(N))) &kp LC(LA(LG(R))) &kp LC(LA(LG(T))) &kp LC(LA(LG(S))) &kp LC(LA(LG(G)))           &kp LC(LA(LG(Y)))   &kp LC(LA(LG(H)))   &kp LC(LA(LG(A)))   &hm LSHFT LC(LA(LG(E))) &kp LC(LA(LG(I)))   &kp RET
-                &trans   &kp LC(LA(LG(Q))) &kp LC(LA(LG(X))) &kp LC(LA(LG(M))) &kp LC(LA(LG(W))) &kp LC(LA(LG(Z)))           &kp LC(LA(LG(J)))   &kp LC(LA(LG(P)))   &kp LC(LA(LG(DOT))) &kp LC(LA(LG(COMMA)))   &trans              &trans
+                &trans   &kp LC(LA(LG(Q))) &kp LC(LA(LG(X))) &kp LC(LA(LG(M))) &kp LC(LA(LG(W))) &kp LC(LA(LG(Z)))           &kp LC(LA(LG(K)))   &kp LC(LA(LG(P)))   &kp LC(LA(LG(DOT))) &kp LC(LA(LG(COMMA)))   &trans              &trans
                        							         &trans     &trans     &sl SYM                   &kp SPACE     &lt_hp NUM ESC     &mo SYS
             >;
         };
