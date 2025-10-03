@@ -42,8 +42,8 @@
             #binding-cells = <2>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
-            require-prior-idle-ms = <140>;
-            tapping-term-ms = <200>;
+            //require-prior-idle-ms = <140>;
+            tapping-term-ms = <250>;
             quick-tap-ms = <160>;
         };
 
@@ -54,8 +54,8 @@
             #binding-cells = <2>;
             flavor = "balanced";
             bindings = <&mo>, <&kp>;
-            require-prior-idle-ms = <140>;
-            tapping-term-ms = <200>;
+            //require-prior-idle-ms = <140>;
+            tapping-term-ms = <250>;
             quick-tap-ms = <160>;
         };
 
@@ -158,14 +158,14 @@
             // --------------------------------------------------------------------------------
             // | TAB  |  B  |  L   |  D  |  C  |  V   |   '  |  F  |  O  |  U   |  J      | [ACCENT] |
             // | BSPC |  N  |  R   |  T  |  S  |  G   |   Y  |  H  |  A  |  E   |  I      | RET |
-            // | SFT  | SFT |  X   |  M  |  W  |  Z   |   K  |  P  | Q . | , ?  | SHIFT | SHIFT |
+            // | SFT  |  Q  |  X   |  M  |  W  |  Z   |   K  |  P  |  .  | , ?  | SHIFT | SHIFT | 
             //        |         |  APP  | SYMBOL      |     SPACE | Esc/Num | SYSTEM |
 
            bindings = <
                 &kp TAB    &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &kp F   &hm LALT O  &hm LGUI U  &kp J     &sl ACC
                 &kp BSPC   &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H   &hm LCTRL A &hm LSHFT E &kp I     &kp RET
-                &sk LSHFT  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P   &kp DOT     &kp QMARK   &sk LSHFT &sk LSHFT
-                                              &trans   &sl APP   &sl SYM                    &kp SPACE  &lt_hp NUM ESC  &mo SYS
+                &sk LSHFT  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P   &kp DOT     &mm_cma_qm  &sk LSHFT &sk LSHFT
+                                             &trans   &sl APP   &sl SYM                    &kp SPACE  &lt_hp NUM ESC  &mo SYS
             >;
         };
 
