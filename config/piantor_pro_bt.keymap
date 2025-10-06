@@ -10,6 +10,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 // LAYERS
+#define BASE 0
 #define ACC 1
 #define SYM 2
 #define NUM 3
@@ -18,6 +19,8 @@
 #define UNKNOWN 6
 #define TMX 7
 #define SYS 8
+ // Layer to avoid Same finger bigram issues for EU/UE
+#define SBF_FIX 9
 
 &sl {
     release-after-ms = <500>;
@@ -80,6 +83,7 @@
             // ensure the Shift you hold stays applied to the "/" press
             keep-mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
    };
 };
 
@@ -141,6 +145,28 @@
 			, <&macro_tap &kp MACRO_PLACEHOLDER>
 			, <&macro_release &kp LCTRL &kp LALT>;
         };
+
+        u_then_sbf: u_then_sbf_layer {
+		compatible = "zmk,behavior-macro";
+		#binding-cells = <0>;
+
+            wait-ms = <0>;   // no delay between bindings
+            tap-ms  = <10>;  // very short press duration (tweak 10–20)
+            // Send 'U', then enable a one-shot layer for the next key press
+		bindings = <&kp U>, <&sl SBF_FIX>;
+        };
+
+
+        e_then_sbf: e_then_sbf_layer {
+		compatible = "zmk,behavior-macro";
+		#binding-cells = <0>;
+
+            wait-ms = <0>;   // no delay between bindings
+            tap-ms  = <10>;  // very short press duration (tweak 10–20)
+            // Send 'E', then enable a one-shot layer for the next key press
+		bindings = <&kp E>, <&sl SBF_FIX>;
+        };
+
     };
 };
 
@@ -162,8 +188,8 @@
             //        |         |  APP  | SYMBOL      |     SPACE | Esc/Num | SYSTEM |
 
            bindings = <
-                &kp TAB    &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &kp F   &hm LALT O  &hm LGUI U  &kp J     &sl ACC
-                &kp BSPC   &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H   &hm LCTRL A &hm LSHFT E &kp I     &kp RET
+                &kp TAB    &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &kp F   &hm LALT O  &u_then_sbf  &kp J     &sl ACC
+                &kp BSPC   &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H   &hm LCTRL A &e_then_sbf &kp I     &kp RET
                 &sk LSHFT  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P   &kp DOT     &mm_cma_qm  &sk LSHFT &sk LSHFT
                                              &trans   &sl APP   &sl SYM                    &kp SPACE  &lt_hp NUM ESC  &mo SYS
             >;
@@ -299,13 +325,13 @@
         };
 
         // #9
-        extra_layer {
-            display-name = "EXTRA";
+        eu_sbf_fix {
+            display-name = "SBF_FIX";
             bindings = <
-                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-                                     &trans &trans &trans  &trans &trans &trans
+                &trans   &trans &trans &trans &trans &trans            &trans &trans &kp E  &kp O  &trans   &trans
+                &trans   &trans &trans &trans &trans &trans            &trans &kp U  &trans &kp H  &trans   &trans
+                &trans   &trans &trans &trans &trans &trans            &trans &trans &trans &trans &trans   &trans
+                                  &trans &trans &trans                     &trans &trans &trans
             >;
         };
     };
