@@ -91,6 +91,7 @@
             #binding-cells = <0>;
             mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
             bindings = <&u_then_sbf_macro>, <&kp U>;
+            keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
 
         // E with SBF fix layer - but only when no mods are active
@@ -99,6 +100,7 @@
             #binding-cells = <0>;
             mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
             bindings = <&e_then_sbf_macro>, <&kp E>;
+            keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
 
    };
