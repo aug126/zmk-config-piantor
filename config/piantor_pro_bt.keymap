@@ -85,6 +85,22 @@
             keep-mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        // U with SBF fix layer - but only when no mods are active
+        u_then_sbf: u_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            bindings = <&u_then_sbf_macro>, <&kp U>;
+        };
+
+        // E with SBF fix layer - but only when no mods are active
+        e_then_sbf: e_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            bindings = <&e_then_sbf_macro>, <&kp E>;
+        };
+
    };
 };
 
@@ -147,26 +163,25 @@
 			, <&macro_release &kp LCTRL &kp LALT>;
         };
 
-        u_then_sbf: u_then_sbf_layer {
+	u_then_sbf_macro: u_then_sbf_macro {
 		compatible = "zmk,behavior-macro";
 		#binding-cells = <0>;
 
 		wait-ms = <0>;   // no delay between bindings
 		tap-ms  = <10>;  // very short press duration (tweak 10–20)
-            // Send 'U', then enable a one-shot layer for the next key press
+		          // Send 'U', then enable a one-shot layer for the next key press
 		bindings = <&kp U>, <&sl SBF_FIX_UE>;
-        };
+		      };
 
-
-        e_then_sbf: e_then_sbf_layer {
+	e_then_sbf_macro: e_then_sbf_macro {
 		compatible = "zmk,behavior-macro";
 		#binding-cells = <0>;
 
 		wait-ms = <0>;   // no delay between bindings
 		tap-ms  = <10>;  // very short press duration (tweak 10–20)
-            // Send 'E', then enable a one-shot layer for the next key press
+		          // Send 'E', then enable a one-shot layer for the next key press
 		bindings = <&kp E>, <&sl SBF_FIX_EU>;
-        };
+		      };
 
     };
 };
