@@ -108,6 +108,19 @@
             keep-mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+	 // temporary test to keep comma active whatever shift is hold or not
+        // key = `,`, on shift hold = ,
+        mm_cma_cma: mm_comma_to_comma {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            // react when either Shift is held:
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            // no shift -> ",", with shift -> "/"
+            bindings = <&kp COMMA>, <&kp COMMA>;
+            // ensure the Shift you hold stays applied to the "/" press
+            // keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         // U with SBF fix layer - but only when no mods are active
         u_then_sbf: u_mod_morph {
             compatible = "zmk,behavior-mod-morph";
@@ -228,12 +241,22 @@
             // | SFT  |  Q  |  X   |  M  |  W  |  Z   |   K  |  P  |  .  | , ?  | SHIFT | SHIFT | 
             //        |         |  APP  | SYMBOL      |     SPACE | Esc/Num | SYSTEM |
 
+            // | TAB  |  B  |  L   |  D  |  C  |  V   |   '  |  F  |  O  |  U   |  J    | BSPC |
+            // | ESC  |  N  |  R   |  T  |  S  |  G   |   Y  |  H  |  A  |  E   |  I    | RET |
+            // | SYM  |  Q  |  X   |  M  |  W  |  Z   |   K  |  P  |  ,  |  ?   | SYM   | SYM | 
+            //        |  SYSTEM  |  APP  |   SHIFT    |     SPACE | ACCENT  |  (Num)    | 
+           /* bindings = < */
+           /*      &kp TAB    &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &hm RGUI F  &hm LALT O  &u_then_sbf &kp J     &sl ACC */
+           /*      &caps_word &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H       &hm LCTRL A &e_then_sbf &kp I     &kp RET */
+           /*      &sk LSHFT  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P       &kp DOT     &mm_cma_qm  &sk LSHFT &sk LSHFT */
+           /*                                   &trans   &lt_hp APP BSPC   &sl SYM                    &kp SPACE  &lt_hp NUM ESC  &mo SYS */
+           /*  >; */
            bindings = <
-                &kp TAB    &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &hm RGUI F  &hm LALT O  &u_then_sbf &kp J     &sl ACC
-                &caps_word &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H       &hm LCTRL A &e_then_sbf &kp I     &kp RET
-                &sk LSHFT  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P       &kp DOT     &mm_cma_qm  &sk LSHFT &sk LSHFT
-                                             &trans   &lt_hp APP BSPC   &sl SYM                    &kp SPACE  &lt_hp NUM ESC  &mo SYS
-            >;
+                &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &hm RGUI F  &hm LALT O  &u_then_sbf &kp J   &kp BSPC
+                &kp ESC  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H       &hm LCTRL A &e_then_sbf &kp I   &kp RET
+                &sl SYM  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P       &mm_cma_cma &kp QMARK   &sl SYM &sl SYM
+                                         &trans   &mo APP   &sk LSHFT                    &kp SPACE  &sl ACC  &mo SYS
+            >; // NOTE: last thumb key still usable(SYS). also, ACC is also NUM. it can be renamed
         };
 
         // #1
@@ -244,12 +267,28 @@
             // |    |     |      |     |     |      |   Ê  |  À  |  É  |  È   |     | RET |
             // |    |     |      |     |     |      |   Ë  |  Û  |     |      |     |     |
             //                 |     |     |        |        |      |     |
+
+	    // |    |     |  Ù  |     |  Ç  |      |      |  Ë |  É  |  È  |  Ê  |     |
+            // |    |  1  |  2  |  3  |  4  |   5  |   6  |  7 |  8  |  9  |  0  |     |
+            // |    |     |     |     |  Ô  |      |   Î  |  Û |  À  |     |  Â  |     |
+	 // TEST: words
+	 // très, préparer, mère, même, bientôt, sûr, français, déjà, où, père, grâce, ici-bas, tâche, bientôt, céder, derrière, ça, à, être, où
+	 // après, là, idée, école, année, forêt, fenêtre, hôpital, où, très, près, vous êtes, garçon, leçon, rêve, tête, créer, goût.
+
+
+            /* bindings = < */
+            /*     &trans   &trans &trans &trans &accent SQT C &trans            &trans          &accent GRAVE U &accent CARET O &accent CARET I &trans   &trans */
+            /*     &trans   &trans &trans &trans &trans        &trans            &accent CARET E &accent GRAVE A &accent SQT E   &accent GRAVE E &trans   &trans */
+            /*     &trans   &trans &trans &trans &trans        &trans            &accent TILD E  &accent CARET U &trans          &trans &trans   &trans */
+            /*                                 &trans &trans &trans                 &trans &trans &trans */
+            /* >; */
             bindings = <
-                &trans   &trans &trans &trans &accent SQT C &trans            &trans          &accent GRAVE U &accent CARET O &accent CARET I &trans   &trans
-                &trans   &trans &trans &trans &trans        &trans            &accent CARET E &accent GRAVE A &accent SQT E   &accent GRAVE E &trans   &trans
-                &trans   &trans &trans &trans &trans        &trans            &accent TILD E  &accent CARET U &trans          &trans &trans   &trans
-                                            &trans &trans &trans                 &trans &trans &trans
+                &trans   &trans &accent GRAVE U &trans &accent SQT C &trans            &trans          &accent TILD E  &accent SQT E   &accent GRAVE E &accent CARET E &trans
+                &trans   &kp N1 &kp N2          &kp N3 &hl NAV N4    &kp N5            &kp N6          &kp N7          &kp N8          &kp N9          &kp N0          &trans
+                &trans   &trans &accent CARET O &trans &trans        &trans            &accent CARET I &accent CARET U &accent GRAVE A &trans          &accent CARET A &trans
+                                                      &trans &trans &trans                 &trans &trans &trans
             >;
+ 
         };
 
         // #2
@@ -276,11 +315,21 @@
 // |  ~  |  *  |  =  |  -  |  >  |  /   |   @  |  &  |  {  |  }  |  '  |  `  |
 // |CAPS |  <  |  #  |  _  |  "  |  !   |   |  |  (  |  )  |  [  |  ]  |     |
 // |CAPS |  ^  |  $  |  \  |  +  |  %   |   :  |  ;  |  .  |  ?  |  ,  |     |
+// -- suggestior :<->;
+// |  ~  |  *  |  =  |  -  |  >  |  /   |   `  |  &  |  {  |  }  |  @  |     |
+// |CAPS |  <  |  #  |  _  |  "  |  !   |   |  |  (  |  )  |  [  |  ]  |     |
+// |CAPS |  ^  |  $  |  \  |  +  |  %   |   ;  |  :  |  .  |  ?  |     |     |
 
+            /* bindings = < */
+            /*     &dead TILD    &kp STAR    &hm LGUI EQL   &hm LALT MINUS  &hl TMX GT       &kp SLASH            &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead GRAVE */
+            /*     &trans        &kp LT      &hm LSHFT HASH &hm LCTRL UNDER &hl_dead NAV DQT &kp EXCL             &kp PIPE    &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans */
+            /*     &trans        &dead CARET &kp DLLR       &kp NUHS        &kp PLUS         &kp PRCNT            &kp COLN &kp SEMI  &kp DOT   &kp QMARK &kp COMMA   &caps_word */
+            /*                                               	&trans &trans &trans              	         &trans &trans &trans */
+            /* >; */
             bindings = <
-                &dead TILD    &kp STAR    &hm LGUI EQL   &hm LALT MINUS  &hl TMX GT       &kp SLASH            &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead GRAVE
-                &trans        &kp LT      &hm LSHFT HASH &hm LCTRL UNDER &hl_dead NAV DQT &kp EXCL             &kp PIPE &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
-                &trans        &dead CARET &kp DLLR       &kp NUHS        &kp PLUS         &kp PRCNT            &kp COLN &kp SEMI  &kp DOT   &kp QMARK &kp COMMA   &caps_word
+                &dead TILD    &kp STAR    &hm LGUI EQL   &hm LALT MINUS  &hl TMX GT       &kp SLASH            &dead GRAVE &kp AMPS  &kp LBRC  &kp RBRC  &kp AT      &trans
+                &trans        &kp LT      &hm LSHFT HASH &hm LCTRL UNDER &hl_dead NAV DQT &kp EXCL             &kp PIPE    &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
+                &trans        &dead CARET &kp DLLR       &kp NUHS        &kp PLUS         &kp PRCNT            &kp SEMI    &kp COLN  &kp DOT   &kp QMARK &trans      &caps_word
                                                           	&trans &trans &trans              	         &trans &trans &trans
             >;
         };
