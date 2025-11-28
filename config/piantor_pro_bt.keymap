@@ -270,7 +270,7 @@
 
 	    // |    |     |  Ù  |     |  Ç  |      |      |  Ë |  É  |  È  |  Ê  |     |
             // |    |  1  |  2  |  3  |  4  |   5  |   6  |  7 |  8  |  9  |  0  |     |
-            // |    |     |     |     |  Ô  |      |   Î  |  Û |  À  |     |  Â  |     |
+            // |    |     |     |     |  Ô  |      |   Î  |  À |     |  Û  |  Â  |     |
 	 // TEST: words
 	 // très, préparer, mère, même, bientôt, sûr, français, déjà, où, père, grâce, ici-bas, tâche, bientôt, céder, derrière, ça, à, être, où
 	 // après, là, idée, école, année, forêt, fenêtre, hôpital, où, très, près, vous êtes, garçon, leçon, rêve, tête, créer, goût.
@@ -285,7 +285,7 @@
             bindings = <
                 &trans   &trans &accent GRAVE U &trans &accent SQT C &trans            &trans          &accent TILD E  &accent SQT E   &accent GRAVE E &accent CARET E &trans
                 &trans   &kp N1 &kp N2          &kp N3 &hl NAV N4    &kp N5            &kp N6          &kp N7          &kp N8          &kp N9          &kp N0          &trans
-                &trans   &trans &accent CARET O &trans &trans        &trans            &accent CARET I &accent CARET U &accent GRAVE A &trans          &accent CARET A &trans
+                &trans   &trans &trans &trans   &accent CARET O      &trans            &accent CARET I &accent GRAVE A &trans          &accent CARET U &accent CARET A &trans
                                                       &trans &trans &trans                 &trans &trans &trans
             >;
  
