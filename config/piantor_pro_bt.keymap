@@ -110,13 +110,13 @@
 
 	 // temporary test to keep comma active whatever shift is hold or not
         // key = `,`, on shift hold = ,
-        mm_cma_cma: mm_comma_to_comma {
+        mm_cma_dot: mm_comma_to_dot {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             // react when either Shift is held:
             mods = <(MOD_LSFT|MOD_RSFT)>;
             // no shift -> ",", with shift -> "/"
-            bindings = <&kp COMMA>, <&kp COMMA>;
+            bindings = <&kp COMMA>, <&kp DOT>;
             // ensure the Shift you hold stays applied to the "/" press
             // keep-mods = <(MOD_LSFT|MOD_RSFT)>;
         };
@@ -254,7 +254,7 @@
            bindings = <
                 &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &hm RGUI F  &hm LALT O  &u_then_sbf &kp J   &kp BSPC
                 &kp ESC  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H       &hm LCTRL A &e_then_sbf &kp I   &kp RET
-                &sl SYM  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P       &mm_cma_cma &kp QMARK   &sl SYM &sl SYM
+                &sl SYM  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P       &mm_cma_dot &kp QMARK   &sl SYM &sl SYM
                                          &trans   &mo APP   &sk LSHFT                    &kp SPACE  &sl ACC  &mo SYS
             >; // NOTE: last thumb key still usable(SYS). also, ACC is also NUM. it can be renamed
         };
@@ -268,9 +268,9 @@
             // |    |     |      |     |     |      |   Ë  |  Û  |     |      |     |     |
             //                 |     |     |        |        |      |     |
 
-	    // |    |     |  Ù  |  À  |  Ç  |      |      |  Ë  |  É  |  È  |  Ê  |     |
+	    // |    |     |  Ù  |  À  |  Ô  |      |      |  Ë  |  É  |  È  |  Ê  |     |
             // |    |  1  |  2  |  3  |  4  |   5  |   6  |  7  |  8  |  9  |  0  |     |
-            // |    |     |     |     |  Ô  |      |      |  Î  |  Â  |  Û  |     |     |
+            // |    |     |     |     |  Ç  |      | SPACE|  Î  |  Â  |  Û  |     |     |
 	 // TEST: words
 	 // très, préparer, mère, même, bientôt, sûr, français, déjà, où, père, grâce, ici-bas, tâche, bientôt, céder, derrière, ça, à, être, où
 	 // après, là, idée, école, année, forêt, fenêtre, hôpital, où, très, près, vous êtes, garçon, leçon, rêve, tête, créer, goût, gîte.
@@ -283,12 +283,11 @@
             /*                                 &trans &trans &trans                 &trans &trans &trans */
             /* >; */
             bindings = <
-                &trans   &trans &accent GRAVE U &accent GRAVE A &accent SQT C   &trans            &trans &accent TILD E  &accent SQT E   &accent GRAVE E &accent CARET E &trans
-                &trans   &kp N1 &kp N2          &kp N3          &hl NAV N4      &kp N5            &kp N6 &kp N7          &kp N8          &kp N9          &kp N0          &trans
-                &trans   &trans &trans          &trans          &accent CARET O &trans            &trans &accent CARET I &accent CARET A &accent CARET U &trans          &trans
+                &trans   &trans &accent GRAVE U &accent GRAVE A &accent CARET O &trans            &trans    &accent LS(SQT) E &accent SQT E   &accent GRAVE E &accent CARET E &trans
+                &trans   &kp N1 &kp N2          &kp N3          &hl NAV N4      &kp N5            &kp N6    &kp N7            &kp N8          &kp N9          &kp N0          &trans
+                &trans   &trans &trans          &trans          &accent SQT C   &trans            &kp SPACE &accent CARET I   &accent CARET A &accent CARET U &trans          &trans
                                                          &trans &trans &trans                           &trans &trans &trans
             >;
- 
         };
 
         // #2
