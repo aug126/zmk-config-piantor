@@ -109,7 +109,7 @@
         };
 
 	 // temporary test to keep comma active whatever shift is hold or not
-        // key = `,`, on shift hold = ,
+        // key = `,`, on shift hold = .
         mm_cma_dot: mm_comma_to_dot {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -120,6 +120,20 @@
             // ensure the Shift you hold stays applied to the "/" press
             // keep-mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+	 // temporary test to keep comma active whatever shift is hold or not
+        // key = `'`, on shift hold = _
+        mm_sqt_under: mm_quote_to_underscore {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            // react when either Shift is held:
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            // no shift -> ",", with shift -> "/"
+            bindings = <&dead SQT>, <&kp UNDER>;
+            // ensure the Shift you hold stays applied to the "/" press
+            // keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
 
         // U with SBF fix layer - but only when no mods are active
         u_then_sbf: u_mod_morph {
@@ -252,10 +266,10 @@
            /*                                   &trans   &lt_hp APP BSPC   &sl SYM                    &kp SPACE  &lt_hp NUM ESC  &mo SYS */
            /*  >; */
            bindings = <
-                &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &hm RGUI F  &hm LALT O  &u_then_sbf &kp J   &kp BSPC
-                &kp ESC  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H       &hm LCTRL A &e_then_sbf &kp I   &kp RET
-                &sl SYM  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P       &mm_cma_dot &kp QMARK   &sl SYM &sl SYM
-                                         &trans   &mo APP   &sk LSHFT                    &kp SPACE  &sl ACC  &mo SYS
+                &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &mm_sqt_under &hm RGUI F  &hm LALT O  &u_then_sbf &kp J   &kp BSPC
+                &kp ESC  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y         &kp H       &hm LCTRL A &e_then_sbf &kp I   &kp RET
+                &sl SYM  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K         &kp P       &mm_cma_dot &kp QMARK   &sl SYM &sl SYM
+                                        &trans   &mo APP   &sk LSHFT                       &kp SPACE  &sl ACC  &mo SYS
             >; // NOTE: last thumb key still usable(SYS). also, ACC is also NUM. it can be renamed
         };
 
