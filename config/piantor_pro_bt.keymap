@@ -223,7 +223,7 @@
 		tap-ms  = <10>;  // very short press duration (tweak 10–20)
 		          // Send 'U', then enable a one-shot layer for the next key press
 		bindings = <&kp U>, <&sl SBF_FIX_UE>;
-		      };
+        };
 
 	e_then_sbf_macro: e_then_sbf_macro {
 		compatible = "zmk,behavior-macro";
@@ -233,7 +233,22 @@
 		tap-ms  = <10>;  // very short press duration (tweak 10–20)
 		          // Send 'E', then enable a one-shot layer for the next key press
 		bindings = <&kp E>, <&sl SBF_FIX_EU>;
-		      };
+        };
+
+	// Useful to make sure the potentially SBF_FIX_UE or SBF_FIX_EU are disabled before using the sticky layer ACCENT.
+	// Leading to `ué` instead of `ue`
+	// See "To Layer" https://zmk.dev/docs/keymaps/behaviors/layers#to-layer
+	 to_sl: to_sl {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <0>;
+            tap-ms = <5>;
+            bindings = 
+                <&to BASE>,              // Clear all layers
+                <&macro_param_1to1>,     // Then activate the parameter layer
+                <&sl MACRO_PLACEHOLDER>; // as sticky
+        };
+
     };
 };
 
@@ -262,7 +277,7 @@
                 &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &mm_sqt_dqt &hm RGUI F  &hm LALT O  &u_then_sbf &kp J   &kp BSPC
                 &kp ESC  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y         &kp H       &hm LCTRL A &e_then_sbf &kp I   &kp RET
                 &sl SYM  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K         &kp P       &mm_cma_dot &kp QMARK   &sl SYM &sl SYM
-                                        &trans   &mo APP   &sk LSHFT                       &kp SPACE  &sl ACC  &mo SYS
+                                        &trans   &mo APP   &sk LSHFT                       &kp SPACE  &to_sl ACC  &mo SYS
             >; // NOTE: last thumb key still usable(SYS). also, ACC is also NUM. it can be renamed
         };
 
