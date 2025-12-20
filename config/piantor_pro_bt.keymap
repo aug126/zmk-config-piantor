@@ -153,6 +153,15 @@
             bindings = <&e_then_sbf_macro>, <&kp E>;
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
+
+	 // Little improvement to smooth the "one-shot" accents. This help to release the accent layer in less than 10ms to avoid 2 keys pressed on sticky_layer while rolling (as it behave as a momentary if held)
+	osl: one_shot_layer {
+	    compatible = "zmk,behavior-hold-tap";
+	    #binding-cells = <2>;
+	    tapping-term-ms = <180>; // exact number to be found (150-250?). With a big number we avoid to write `ˆé` instead of `ô` (é rolled on accent layer still active). With a small number, a 2 wanted accent roll will fail the 2th. ex `à`+`SPACE`
+	    flavor = "tap-preferred";
+	    bindings = <&mo>, <&osm>;  // Hold = momentary, Tap = one-shot
+	};
    };
 };
 
@@ -164,7 +173,7 @@
 
 	    // Make the macro complete quickly: (next try would be tap-ms=15, wait-ms=5)
             wait-ms = <0>;   // no delay between bindings
-            tap-ms  = <12>;  // very short press duration (tweak 10–20)
+            tap-ms  = <1>;  // very short press duration
 
             bindings
                 = <&macro_param_1to1>
@@ -234,6 +243,18 @@
 		          // Send 'E', then enable a one-shot layer for the next key press
 		bindings = <&kp E>, <&sl SBF_FIX_EU>;
         };
+
+	osm: one_shot_macro {
+	    compatible = "zmk,behavior-macro-one-param";
+	    #binding-cells = <1>;
+	    wait-ms = <0>;
+	    tap-ms = <0>; // shorten as possible?
+	    bindings = 
+		// <&to BASE>,              // Clear all layers first
+		<&macro_param_1to1>,
+		<&sl MACRO_PLACEHOLDER>; // Activate as sticky layer
+	};
+
     };
 };
 
@@ -263,7 +284,7 @@
                 &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &mm_sqt_dqt &hm RGUI F  &hm LALT O  &u_then_sbf &kp J   &kp BSPC
                 &kp ESC  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y         &kp H       &hm LCTRL A &e_then_sbf &kp I   &kp RET
                 &sl SYM  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K         &kp P       &mm_cma_dot &kp QMARK   &sl SYM &sl SYM
-                                        &trans   &mo APP   &sk LSHFT                       &kp SPACE  &sl ACC  &mo SYS
+                                        &trans   &mo APP   &sk LSHFT                       &kp SPACE  &osl ACC ACC  &mo SYS
             >; // NOTE: last thumb key still usable(SYS). also, ACC is also NUM. it can be renamed
         };
 
