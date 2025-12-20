@@ -154,6 +154,7 @@
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
 
+	// /!\ To be used as `&osl ACC ACC`, this to make roll with only first tap on accent layer. temporary disebled to try accents without (lead to dead key issues when combined with alternate space)
 	 // Little improvement to smooth the "one-shot" accents. This help to release the accent layer in less than 10ms to avoid 2 keys pressed on sticky_layer while rolling (as it behave as a momentary if held)
 	osl: one_shot_layer {
 	    compatible = "zmk,behavior-hold-tap";
@@ -284,7 +285,7 @@
                 &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &mm_sqt_dqt &hm RGUI F  &hm LALT O  &u_then_sbf &kp J   &kp BSPC
                 &kp ESC  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y         &kp H       &hm LCTRL A &e_then_sbf &kp I   &kp RET
                 &sl SYM  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K         &kp P       &mm_cma_dot &kp QMARK   &sl SYM &sl SYM
-                                        &trans   &mo APP   &sk LSHFT                       &kp SPACE  &osl ACC ACC  &mo SYS
+                                        &trans   &mo APP   &sk LSHFT                       &kp SPACE  &sl ACC  &mo SYS
             >; // NOTE: last thumb key still usable(SYS). also, ACC is also NUM. it can be renamed
         };
 
