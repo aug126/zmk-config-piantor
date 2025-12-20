@@ -153,6 +153,20 @@
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
 
+			 
+	// Little "hack" to reset layers to BASE while using accents.
+	// Useful to make sure the potentially SBF_FIX_UE or SBF_FIX_EU are disabled before using the sticky layer ACCENT.
+	// As the sticky_layer don't stay active from macros, a hold-tap behavior dispatch to a momentary layer if needed.
+	// This is pretty nice as it let the possibility to be "sticky one shot" flavored, and ease the single accent shot "ée" without the careful to quickly release the accent layer
+	// Leading to `ué` instead of `ue`
+	// See "To Layer" https://zmk.dev/docs/keymaps/behaviors/layers#to-layer
+	to_sl: to_sl {
+	    compatible = "zmk,behavior-hold-tap";
+	    #binding-cells = <2>;
+	    tapping-term-ms = <100>;
+	    flavor = "tap-preferred";  // or "hold-preferred" depending on your preference
+	    bindings = <&mo_with_to>, <&sl_with_to>;
+	};
    };
 };
 
@@ -235,19 +249,28 @@
 		bindings = <&kp E>, <&sl SBF_FIX_EU>;
         };
 
-	// Useful to make sure the potentially SBF_FIX_UE or SBF_FIX_EU are disabled before using the sticky layer ACCENT.
-	// Leading to `ué` instead of `ue`
-	// See "To Layer" https://zmk.dev/docs/keymaps/behaviors/layers#to-layer
-	 to_sl: to_sl {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            wait-ms = <0>;
-            tap-ms = <5>;
-            bindings = 
-                <&to BASE>,              // Clear all layers
-                <&macro_param_1to1>,     // Then activate the parameter layer
-                <&sl MACRO_PLACEHOLDER>; // as sticky
-        };
+	// Helper macro for hold action (momentary)
+	mo_with_to: mo_with_to {
+	    compatible = "zmk,behavior-macro-one-param";
+	    #binding-cells = <1>;
+	    wait-ms = <0>;
+	    tap-ms = <5>;
+	    bindings = 
+		<&to BASE>,
+		<&macro_param_1to1>,
+		<&mo MACRO_PLACEHOLDER>;
+	};
+	// Helper macro for tap action (sticky)
+	sl_with_to: sl_with_to {
+	    compatible = "zmk,behavior-macro-one-param";
+	    #binding-cells = <1>;
+	    wait-ms = <0>;
+	    tap-ms = <5>;
+	    bindings = 
+		<&to BASE>,
+		<&macro_param_1to1>,
+		<&sl MACRO_PLACEHOLDER>;
+	};
 
     };
 };
@@ -278,7 +301,7 @@
                 &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &mm_sqt_dqt &hm RGUI F  &hm LALT O  &u_then_sbf &kp J   &kp BSPC
                 &kp ESC  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y         &kp H       &hm LCTRL A &e_then_sbf &kp I   &kp RET
                 &sl SYM  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K         &kp P       &mm_cma_dot &kp QMARK   &sl SYM &sl SYM
-                                        &trans   &mo APP   &sk LSHFT                       &kp SPACE  &to_sl ACC  &mo SYS
+                                        &trans   &mo APP   &sk LSHFT                       &kp SPACE  &to_sl ACC ACC  &mo SYS
             >; // NOTE: last thumb key still usable(SYS). also, ACC is also NUM. it can be renamed
         };
 
@@ -317,10 +340,10 @@
             /*                                 &trans &trans &trans                 &trans &trans &trans */
             /* >; */
             bindings = <
-                &trans   &trans          &trans  &trans  &trans     &trans             &trans  &trans    &accent SQT E   &accent GRAVE E &accent LS(SQT) E &trans
-                &trans   &kp N1          &kp N2  &kp N3  &hl NAV N4 &kp N5             &kp N6  &kp N7    &kp N8          &kp N9          &kp N0            &trans
-                &trans   &accent GRAVE U &trans  &trans  &trans     &accent SQT C      &trans  &kp CARET &accent GRAVE A &kp SPACE       &trans            &trans
-                        			 &trans &trans &trans                            &trans &trans &trans
+                &trans   &trans          &trans  &trans  &trans     &trans             &trans  &kp CARET       &accent SQT E &accent GRAVE E &accent LS(SQT) E &trans
+                &trans   &kp N1          &kp N2  &kp N3  &hl NAV N4 &kp N5             &kp N6  &kp N7          &kp N8        &kp N9          &kp N0            &trans
+                &trans   &accent GRAVE U &trans  &trans  &trans     &accent SQT C      &trans  &accent GRAVE A &kp UNDER     &kp MINUS       &trans            &trans
+                        			 &trans &trans &kp SPACE                            &trans &trans &trans
             >;
         };
 
