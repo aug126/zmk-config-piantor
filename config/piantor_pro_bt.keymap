@@ -3,6 +3,27 @@
  *
  * SPDX-License-Identifier: MIT
  */
+
+
+
+ 	// GRAPHITE ----------------------------------------------------------------------
+	// | TAB  |  B  |  L  |  D  |  C  |  V    |   '/..|  F  |  O  |  U  |  J  | BSPC |
+	// | SYM  |  N  |  R  |  T  |  S  |  G    |    Y  |  H  |  A  |  E  |  I  | SYM  |
+	// | ESC  |  Q  |  X  |  M  |  W  |  Z    |    K  |  P  | ,/. | é/É | RET | RET  | 
+	//           |  ____  |  APP  |  SHIFT    |    SPACE  |  ACCENT  |  SYSTEM  |
+
+	// ACCENT - NUMBER ---------------------------------------------------------------
+	// |      |  Ù  |  /  |  -  |  Ç  |  À    |    Ï  |  Û  |  -  |  È  |  Ê  |  Ë   |
+	// |      |  1  |  2  |  3  |  4  |  5    |    6  |  7  |  8  |  9  |  0  |  Ü   |
+	// |      |  Â  |  \  |  _  |  :  |  "    |    %  |  @  |  _  |  Ô  |  Î  |      |
+
+	// SYMBOL ------------------------------------------------------------------------
+	// |      |  <  |  /  |  -  |  >  |  *    |    |  |  $  |  {  |  }  |  `  |      |
+	// |      |  ^  |  =  |  !  |  +  |  ~    |    #  |  (  |  )  |  [  |  ]  |  '   |
+	// |      |     |  \  |  _  |  :  |  "    |    &  |  ?  |  .  |  ;  | RET | RET  |
+
+
+
  
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -189,7 +210,7 @@
 
 	    // Make the macro complete quickly: (next try would be tap-ms=15, wait-ms=5)
             wait-ms = <0>;   // no delay between bindings
-            tap-ms  = <12>;  // very short press duration (tweak 10–20)
+            tap-ms  = <1>;  // very short press duration (tweak 10–20)
 
             bindings
                 = <&macro_param_1to1>
@@ -265,32 +286,26 @@
 
         default_layer {
             display-name = "GRAPHITE";
-            // |      |     | GUI | ALT | TMX |      |      | GUI | ALT |     |     |     |
-            // |      |     | SHT | CTL | NAV |      |      |     | CTL |     |     |     |
-            // |      |     |     |     |     |      |      |     |     |     |     |     |
-            // --------------------------------------------------------------------------------
+	// |      |     | GUI | ALT |(TMX)|      |      | GUI | ALT |     |     |     |
+	// |      |     |     | CTL | NAV |      |      |     | CTL |     |     |     |
+	// |      |     |     |     |     |      |      |     |     |     |     |     |
+	//          |  ____  |  APP  |  SHIFT    |    SPACE  |  ACCENT  |  SYSTEM  |
 
-            // | TAB  |  B  |  L   |  D  |  C  |  V   |   '  |  F  |  O  |  U   |  J    | BSPC |
-            // | ESC  |  N  |  R   |  T  |  S  |  G   |   Y  |  H  |  A  |  E   |  I    | RET |
-            // | SYM  |  Q  |  X   |  M  |  W  |  Z   |   K  |  P  |  ,/.  |  ?/unknown?? | SYM/:   | SYM | // TODO: add column on SYM while shift is pressed? so ?. and ?: can be done with shift
-            //        |  SYSTEM  |  APP  |   SHIFT    |     SPACE | ACCENT  |  (Num)    |			// TODO: the ? could be with shift to add another accessible key
-			 											// TODO: 
-           /* bindings = < */
-           /*      &kp TAB    &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &dead SQT &hm RGUI F  &hm LALT O  &u_then_sbf &kp J     &sl ACC */
-           /*      &caps_word &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y     &kp H       &hm LCTRL A &e_then_sbf &kp I     &kp RET */
-           /*      &sk LSHFT  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K     &kp P       &kp DOT     &mm_cma_qm  &sk LSHFT &sk LSHFT */
-           /*                                   &trans   &lt_hp APP BSPC   &sl SYM                    &kp SPACE  &lt_hp NUM ESC  &mo SYS */
-           /*  >; */
+	// GRAPHITE -----------------------------------------------------------------------
+	// | TAB  |  B  |  L  |  D  |  C  |  V   |  '/..|  F  |  O  |  U  |  J  | BSPC |
+	// | SYM  |  N  |  R  |  T  |  S  |  G   |   Y  |  H  |  A  |  E  |  I  | SYM  |
+	// | ESC  |  Q  |  X  |  M  |  W  |  Z   |   K  |  P  | ,/. | é/É  | RET | RET  | 
            bindings = <
-                &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &mm_sqt_dqt &hm RGUI F  &hm LALT O  &u_then_sbf &kp J   &kp BSPC
-                &kp ESC  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y         &kp H       &hm LCTRL A &e_then_sbf &kp I   &kp RET
-                &sl SYM  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K         &kp P       &mm_cma_dot &kp QMARK   &sl SYM &sl SYM
+                &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &mm_sqt_dqt &hm RGUI F  &hm LALT O  &u_then_sbf     &kp J   &kp BSPC
+                &sl SYM  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y       &kp H       &hm LCTRL A &e_then_sbf     &kp I   &sl SYM
+                &kp ESC  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K       &kp P       &mm_cma_dot &accent SQT E &kp RET &kp RET
                                         &trans   &mo APP   &sk LSHFT                       &kp SPACE  &sl ACC  &mo SYS
-            >; // NOTE: last thumb key still usable(SYS). also, ACC is also NUM. it can be renamed
+            >;
+
         };
 
 	
-        // #9
+        // #1
         ue_sbf_fix {
             display-name = "SBF_FIX_UE";
             bindings = <
@@ -303,7 +318,7 @@
 
 
 
-        // #10
+        // #2
         eu_sbf_fix {
             display-name = "SBF_FIX_EU";
             bindings = <
@@ -315,101 +330,80 @@
         };
 
 
-        // #1
+        // #3
         accent_layer {
             display-name = "ACCENT";
-	    // old
-	    // |    |     |  Ù  |  À  |  Ô  |      |      |  Ë  |  É  |  È  |  Ê  |     |
-            // |    |  1  |  2  |  3  |  4  |   5  |   6  |  7  |  8  |  9  |  0  |     |
-            // |    |     |     |     |  Ç  |      | SPACE|  Î  |  Â  |  Û  |     |     |
-
-	    // current
-	    // |    |     |  Ù  | .Â  |  Ô  |  .À  |      |  Ë  |  É  |  È  |  Ê  |     |
-            // |    |  1  |  2  |  3  |  4  |   5  |   6  |  7  |  8  |  9  |  0  |     |
-            // |    |     |     | .Û  |  Ç  |      | SPACE|  Î  |  _  |  -  |     |     |   
-	 										   // TODO: move the most used special char to accent layer? (ore those out of combos?)
-	 											// TODO: if nice, should I reduce less used accents with dead keys? ex ^ for îâêô
-	 											// TODO: --> move space to shift pinky + move à to î to ease `à ` ?
-	// LAST SUGGESTION!
-	// |    |  <  |  /  |  -  |  >  |  *   |      |     |  É  |  È  |  Ë  |     |
-	// |    |  1  |  2  |  3  |  4  |  5   |   6  |  7  |  8  |  9  |  0  |     |
-	// |    |  Ù  |  \  |  _  |  $  |  Ç   |      |  d^ |  À  |SPACE|     |     |
+	// ACCENT - NUMBER ---------------------------------------------------------------
+	// |      |  Ù  |  /  |  -  |  Ç  |  À    |   (Ï) | (Û) |  -  | (È) | (Ê) |  Ë   |
+	// |      |  1  |  2  |  3  |  4  |  5    |    6  |  7  |  8  |  9  |  0  | (Ü)  |
+	// |      | (Â) |  \  |  _  |  :  |  "    |    %  |  @  |  _  |  Ô  | (Î) |      |
+	//          |  NONE  |  APP  |  SHIFT    |    SPACE  |  ACCENT  |  SYSTEM  |
+            bindings = <
+                &trans   &accent GRAVE U &kp SLASH &kp MINUS &accent SQT C &accent GRAVE A      &accent LS(SQT) I &accent CARET U &kp MINUS &accent GRAVE E &accent CARET E &accent LS(SQT) E
+                &trans   &kp N1          &kp N2    &kp N3    &hl NAV N4    &kp N5               &kp N6            &kp N7          &kp N8    &kp N9          &kp N0          &accent LS(SQT) U
+                &trans   &accent CARET A &kp NUHS  &kp UNDER &kp COLN      &dead DQT            &kp PRCNT         &kp AT          &kp UNDER &accent CARET O &accent CARET I &accent CARET I
+                        			          &trans &trans &trans                      &trans &trans &trans
+            >;
+        };
 
 	 // TEST: words
-	 // où, à, là
-	 // très, préparer, mère, déjà, père, céder, derrière, après, idée, école, année, très, près, créer
-	 // français, façon, garçon, leçon, maçon, façade, reçu, déçu, aperçu, glaçon, balançoire, commerçant, remplaçant, grinçant, fiançailles, gerçure, pinçant, soupçon, rançon, tronçon, limaçon, colimaçon, hameçon, glaçage, traçage, perçant, lançant, effaçant, berçant
-	 // Noël, canoë, contiguë, Raphaël
-	 // château, âge, hôtel, île, sûr, pâte, côte, dîner, mûr, théâtre, drôle, chaîne, flûte, âme, tôt, maître, coût, gâteau, bientôt, connaître, goût, tâche, rôle, paraître, août, bâtiment, contrôle, boîte, dû, grâce, hôpital, fraîche, brûler, mâcher, fantôme, traître, bûche, forêt, dôme, croître, piqûre, tête, fête, être, même, rêve, fenêtre, prêt, arrêt, bête, enquête, tempête, honnête, pêche, frêle, grêle, extrême, suprême, crêpe, gêne, rôti, pôle, clôture, apôtre, nôtre, vôtre, diplôme, symptôme, fûr, sûreté, clôture, bâton, râler, lâche, pâle, câble, mâle, âpre, infâme
+// -> été, été, été, café, canapé, bébé, épée, idée, année, journée, soirée, matinée, entrée, arrivée, durée, pensée, fumée, armée, vallée, allée, fée, clé, pré, blé, gré, dé, né, thé, cité, vérité, beauté, santé, liberté, égalité, fraternité, société, réalité, qualité, quantité, activité, capacité, université, identité, sécurité, difficulté, possibilité, responsabilité, électricité, félicité, célébrité, éternité, générosité, curiosité, créé, situé, continué, développé, présenté, représenté, considéré, déclaré, préparé, séparé, écouté, écouter, étudier, écrire, élire, éviter, évaluer, évoquer, évoluer, économie, économique, école, éducation, église, élection, électronique, émotion, émission, énergie, énorme, équipe, équilibre, équipement, échange, échec, écran, édition, éditeur, effet, effort, égal, également, élément, éléphant, élève, élevé, éliminer, éloigner, élu, email, émettre, émigrer, épaule, épais, époque, épreuve, éprouver, espérer, état, étage, étagère, étape, éteindre, étendre, éternel, étoile, étonner, étranger, étroit, étude, événement, éventuel, évidemment, évident, février, décembre, présent, président, général, génération, généreux, gérer, téléphone, télévision, téléviser, répéter, réparer, répondre, réponse, résultat, résumé, révéler, réveiller, révolution, région, régime, régulier, réaliser, récent, réception, recherche, récit, réclamer, recommander, récompense, réconcilier, réduire, référence, réfléchir, réforme, refuser, regard, régler, régner, regretter, rejeter, relation, relever, religion, remarquer, remédier, remercier, remettre, remonter, remplacer, remplir, rencontrer, rendre, renoncer, renouveler, renseigner, rentrer, renverser, répandre, repas, repasser, repérer, répertoire, repos, reprendre, représenter, reproduire, république, réputation, réserver, résidence, résigner, résister, résoudre, respect, respirer, rester, restreindre, retard, retenir, retirer, retour, retourner, retrouver, réunion, réussir, réussite, revenir, revoir, préférer, préférence, précéder, précédent, précieux, précis, préciser, prédire, préface, préfet, préjugé, prélever, premier, prémunir, prendre, prénom, préoccuper, préparer, présence, présenter, préserver, présider, presque, presser, prétendre, prétexte, prévaloir, prévenir, prévoir, déjà, début, décider, décision, déclaration, déclarer, décorer, découvrir, décrire, dédier, défaire
+// -> à, là, déjà, voilà, au-delà, çà, holà, où-là, deçà
+// -> père, mère, frère, très, après, près, dès, accès, excès, succès, procès, décès, progrès, congrès, exprès, auprès, là-près, ci-après, ès, palmarès, abcès, grès, agrès, cyprès, derrière, arrière, lumière, manière, matière, première, dernière, entière, frontière, carrière, barrière, prière, rivière, poussière, bière, fière, pierre, guerre, terre, serre, lierre, ère,ère, colère,ère, misère,ère, sincère,ère, sévère, modère, espère, libère,ère, problème, système, thème, crème, poème, bohème, stratagème, blasphème, ième, troisième, deuxième, cinquième, centième, millième, scène, obscène, phénomène, gène, hygiène, oxygène, hydrogène, gangrène, arène, sirène, mécène, sèche, flèche, brèche, lèvre, fièvre, chèvre, lièvre, sève,ève, grève, élève, enlève, achève, règle, siège, piège, manège
+// -> forêt, tête, fête, être, même, rêve, fenêtre, prêt, arrêt, bête, enquête, tempête, honnête, pêche, frêle, grêle, extrême, suprême, crêpe, gêne,
+// -> français, façon, garçon, leçon, maçon, façade, reçu, déçu, aperçu, glaçon, balançoire, commerçant, remplaçant, grinçant, fiançailles, gerçure, pinçant, soupçon, rançon, tronçon, limaçon, colimaçon, hameçon, glaçage, traçage, perçant, lançant, effaçant, berçant
+// -> dîner, chaîne, maître, connaître, paraître, île, boîte, fraîche, traître, croître,
+// -> château, âge, pâte, théâtre, âme, gâteau, tâche, bâtiment, grâce, mâcher, bâton, râler, lâche, pâle, câble, mâle, âpre, infâme
+// -> hôtel, côte, drôle, tôt, bientôt, rôle, contrôle, hôpital, fantôme, dôme, rôti, pôle, clôture, apôtre, nôtre, vôtre, diplôme, symptôme, clôture,
+// -> où
+// -> sûr, mûr, flûte, coût, goût, août, dû, brûler, bûche, piqûre, fûr, sûreté,
+// -> naïf, naïve, naïvement, naïveté, maïs, haïr, haï, haïssons, ouïe, ouïr, inouï, aïeul, aïeux, aïe, faïence, laïc, laïque, laïcité, égoïste, égoïsme, héroïne, héroïque, héroïsme, stoïque, stoïcisme, archaïque, prosaïque, judaïque, mosaïque, astéroïde, paranoïde, thyroïde, trapézoïde, coïncidence, coïncider
+// -> Noël, canoë, contiguë, Raphaël
+// -> aigüe, ambigüe,contigüe, exigüe, cigüe
 
 
-            /* bindings = < */
-            /*     &trans   &trans &trans &trans &accent SQT C &trans            &trans          &accent GRAVE U &accent CARET O &accent CARET I &trans   &trans */
-            /*     &trans   &trans &trans &trans &trans        &trans            &accent CARET E &accent GRAVE A &accent SQT E   &accent GRAVE E &trans   &trans */
-            /*     &trans   &trans &trans &trans &trans        &trans            &accent TILD E  &accent CARET U &trans          &trans &trans   &trans */
-            /*                                 &trans &trans &trans                 &trans &trans &trans */
-            /* >; */
-            bindings = <
-                &trans   &trans          &trans  &trans  &trans     &trans             &trans  &kp CARET       &accent SQT E &accent GRAVE E &accent LS(SQT) E &trans
-                &trans   &kp N1          &kp N2  &kp N3  &hl NAV N4 &kp N5             &kp N6  &kp N7          &kp N8        &kp N9          &kp N0            &trans
-                &trans   &accent GRAVE U &trans  &trans  &trans     &accent SQT C      &trans  &accent GRAVE A &kp UNDER     &kp MINUS       &trans            &trans
-                        			 &trans &trans &kp SPACE                            &trans &trans &trans
-            >;
-        };
 
-        // #2
+        // #4
         symbol_layer {
             display-name = "SYM";
-// improvement still possible. 
-// following patterns should be easy to write:
-//  <></>
-//  /** */
-//  ->
-//  =>
-//  !=
-//  ~/
-//  +=
-//  -=
-// So bigrams are: ->, -=,, <>, </,, />, /*,, ><,, =>,, !=,, ~/,, +=
-// vim constraints:
-// # <-> *  
-// ^ <-> $ 
-// `/` more accessible 
-// `:` `%` more accessible
-// ~,*,=,-,/,^,+,% not on the homerow do be at same place on numbers /!\ NOT ANYMORE!
-// TODO: completely review the SYMBOL layer
-
-
-// current
-// |  ~  |  *  |  =  |  -  |  >  |  /   |   @  |  &  |  {  |  }  |  '  |  `  |
-// |CAPS |  <  |  #  |  _  |  "  |  !   |   |  |  (  |  )  |  [  |  ]  |     |
-// |CAPS |  ^  |  $  |  \  |  +  |  %   |   :  |  ;  |  .  |  ?  |  ,  |     |
-// -- suggestion :<->;
-// |  ~  |  *  |  =  |  -  |  >  |  /   |   `  |  &  |  {  |  }  |  @  |     |
-// |CAPS |  <  |  #  |  _  |  "  |  !   |   |  |  (  |  )  |  [  |  ]  |     |
-// |CAPS |  ^  |  $  |  \  |  +  |  %   |   ;  |  :  |  .  |  ?  |     |     |
-
-// LAST SUGGESTION!
-// |     |  <  |  /  |  -  |  >  |  *   |   |  |  &  |  {  |  }  |  '  |     |
-// |     |  ^  |  !  |  =  |  +  |  ~   |   @  |  (  |  )  |  [  |  ]  |     |
-// |     | (") |  \  |  _  |  $  |      |   %  |  `  |  #  |  ;  |     |     |
-
-
-            /* bindings = < */
-            /*     &dead TILD    &kp STAR    &hm LGUI EQL   &hm LALT MINUS  &hl TMX GT       &kp SLASH            &kp AT   &kp AMPS  &kp LBRC  &kp RBRC  &dead SQT   &dead GRAVE */
-            /*     &trans        &kp LT      &hm LSHFT HASH &hm LCTRL UNDER &hl_dead NAV DQT &kp EXCL             &kp PIPE    &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans */
-            /*     &trans        &dead CARET &kp DLLR       &kp NUHS        &kp PLUS         &kp PRCNT            &kp COLN &kp SEMI  &kp DOT   &kp QMARK &kp COMMA   &caps_word */
-            /*                                               	&trans &trans &trans              	         &trans &trans &trans */
-            /* >; */
+	// SYMBOL ------------------------------------------------------------------------
+	// |      |  <  |  /  |  -  |  >  |  *    |    |  |  $  |  {  |  }  |  `  |      |
+	// |      |  ^  |  =  |  !  |  +  |  ~    |    #  |  (  |  )  | \[  |  ]  |  '   |
+	// |      |     |  \  |  _  |  :  |  "    |    &  |  ?  |  .  |  ;  | RET | RET  |
             bindings = <
-                &dead TILD    &kp STAR    &hm LGUI EQL   &hm LALT MINUS  &hl TMX GT       &kp SLASH            &dead GRAVE &kp AMPS  &kp LBRC  &kp RBRC  &kp AT      &trans
-                &trans        &kp LT      &hm LSHFT HASH &hm LCTRL UNDER &hl_dead NAV DQT &kp EXCL             &kp PIPE    &kp LPAR  &kp RPAR  &kp LBKT  &kp RBKT    &trans
-                &trans        &dead CARET &kp DLLR       &kp NUHS        &kp PLUS         &kp PRCNT            &kp SEMI    &kp COLN  &kp DOT   &kp QMARK &trans      &caps_word
-                                                          	&trans &trans &trans              	         &trans &trans &trans
+                &trans        &kp LT      &kp SLASH &hm LALT MINUS &kp GT       &kp STAR             &kp PIPE  &kp DLLR  &hm LALT LBRC  &kp RBRC &dead GRAVE    &trans
+                &trans        &dead CARET &kp EQL   &hm LCTRL EXCL &hl NAV PLUS &dead TILD           &kp HASH  &kp LPAR  &hm LCTRL RPAR &kp LBKT &kp RBKT       &dead SQT
+                &trans        &trans      &kp NUHS  &kp UNDER      &kp COLN     &dead DQT              &kp AMPS  &kp QMARK &kp DOT        &kp SEMI &trans         &trans
+                                                      	      &trans &trans &trans              	         &trans &trans &trans
             >;
         };
 
-        // #3
+	// TEST: symbols:
+// <>
+// </>
+// ?.
+// ?:
+// !=
+// /* 
+// */
+// ();
+// ('      
+// ')      
+// ({
+// })
+// \['
+// ']
+// =>
+// <=
+// >=
+// ->
+// ="
+// ~/
+// +=
+// -=
+// % / # * $ _ :
+
+        // #5
         number_layer {
             display-name = "NUM"; 
             // the . , = - + / * ^ keys are transparent useful
@@ -425,7 +419,7 @@
             >;
         };
 
-        // #4
+        // #6
         nav_layer {
             display-name = "NAV";
             // |      |     |     |     |     |     |      |      |      |       |     |     |
@@ -440,7 +434,7 @@
             >;
         };
 
-        // #5 C-A-S-<key>
+        // #7 C-A-S-<key>
         app_layer {
             display-name = "APP";
             bindings = <
@@ -451,7 +445,7 @@
             >;
         };
 
-        // #6 A-S-<key>
+        // #8 A-S-<key>
         workspace_layer { // do be renamed (available for something else)
             display-name = "UNKNOWN";
             bindings = <
@@ -462,7 +456,7 @@
             >;
         };
 
-        // #7 C-A-<key>
+        // #9 C-A-<key>
         tmux_layer {
             display-name = "TMX";
             bindings = <
@@ -473,7 +467,7 @@
             >;
         };
 
-        // #8
+        // #10
         system_layer {
             display-name = "SYS";
             // -----------------------------------------------------------------------------------------
