@@ -7,20 +7,20 @@
 
 
  	// GRAPHITE ----------------------------------------------------------------------
-	// | TAB  |  B  |  L  |  D  |  C  |  V    |   '/..|  F  |  O  |  U  |  J  | BSPC |
-	// | SYM  |  N  |  R  |  T  |  S  |  G    |    Y  |  H  |  A  |  E  |  I  | SYM  |
+	// | TAB  |  B  |  L  |  D  |  C  |  V    |   '/" |  F  |  O  |  U  |  J  | BSPC |
+	// | SFT  |  N  |  R  |  T  |  S  |  G    |    Y  |  H  |  A  |  E  |  I  | SFT  |
 	// | ESC  |  Q  |  X  |  M  |  W  |  Z    |    K  |  P  | ,/. | é/É | RET | RET  | 
-	//           |  ____  |  APP  |  SHIFT    |    SPACE  |  ACCENT  |  SYSTEM  |
+	//           |  ____  |  APP  |  SPACE    |    SHIFT  |  SYMB   |  SYSTEM  |
 
 	// ACCENT - NUMBER ---------------------------------------------------------------
 	// |      |  Ù  |  /  |  -  |  Ç  |  À    |    Ï  |  Û  |  -  |  È  |  Ê  |  Ë   |
-	// |      |  1  |  2  |  3  |  4  |  5    |    6  |  7  |  8  |  9  |  0  |  Ü   |
+	// |   0  |  1  |  2  |  3  |  4  |  5    |    6  |  7  |  8  |  9  |  0  |  Ü   |
 	// |      |  Â  |  \  |  _  |  :  |  "    |    %  |  @  |  _  |  Ô  |  Î  |      |
 
 	// SYMBOL ------------------------------------------------------------------------
 	// |      |  <  |  /  |  -  |  >  |  *    |    |  |  $  |  {  |  }  |  `  |      |
-	// |      |  ^  |  =  |  !  |  +  |  ~    |    #  |  (  |  )  |  [  |  ]  |  '   |
-	// |      |     |  \  |  _  |  :  |  "    |    &  |  ?  |  .  |  ;  | RET | RET  |
+	// |      |  ^  |  =  |  _  |  +  |  ~    |    #  |  (  |  )  |  [  |  ]  |  '   |
+	// |      |     |  \  |  !  |  :  |  "    |    &  |  ?  |  .  |  ;  | RET | RET  |
 
 
 
@@ -292,14 +292,14 @@
 	//          |  ____  |  APP  |  SHIFT    |    SPACE  |  ACCENT  |  SYSTEM  |
 
 	// GRAPHITE -----------------------------------------------------------------------
-	// | TAB  |  B  |  L  |  D  |  C  |  V   |  '/..|  F  |  O  |  U  |  J  | BSPC |
+	// | TAB  |  B  |  L  |  D  |  C  |  V   |  '/" |  F  |  O  |  U  |  J  | BSPC |
 	// | SYM  |  N  |  R  |  T  |  S  |  G   |   Y  |  H  |  A  |  E  |  I  | SYM  |
 	// | ESC  |  Q  |  X  |  M  |  W  |  Z   |   K  |  P  | ,/. | é/É  | RET | RET  | 
            bindings = <
                 &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C &kp V           &mm_sqt_dqt &hm RGUI F  &hm LALT O  &u_then_sbf     &kp J   &kp BSPC
-                &sl SYM  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y       &kp H       &hm LCTRL A &e_then_sbf     &kp I   &sl SYM
+                &sl ACC  &kp N     &hm LSHFT R &hm LCTRL T &hl NAV S &kp G           &kp Y       &kp H       &hm LCTRL A &e_then_sbf     &kp I   &sl ACC
                 &kp ESC  &kp Q     &kp X       &kp M       &kp W     &kp Z           &kp K       &kp P       &mm_cma_dot &accent SQT E &kp RET &kp RET
-                                        &trans   &mo APP   &sk LSHFT                       &kp SPACE  &sl ACC  &mo SYS
+                                        &trans   &mo APP   &kp SPACE                       &sk LSHFT &sl SYM  &mo SYS
             >;
 
         };
@@ -368,12 +368,12 @@
             display-name = "SYM";
 	// SYMBOL ------------------------------------------------------------------------
 	// |      |  <  |  /  |  -  |  >  |  *    |    |  |  $  |  {  |  }  |  `  |      |
-	// |      |  ^  |  =  |  !  |  +  |  ~    |    #  |  (  |  )  | \[  |  ]  |  '   |
-	// |      |     |  \  |  _  |  :  |  "    |    &  |  ?  |  .  |  ;  | RET | RET  |
+	// |      |  ^  |  =  |  _  |  !  |  ~    |    #  |  (  |  )  | \[  |  ]  |  '   |
+	// |      |     |  \  |  +  |  :  |  "    |    &  |  ?  |  .  |  ;  | RET | RET  |
             bindings = <
-                &trans        &kp LT      &kp SLASH &hm LALT MINUS &kp GT       &kp STAR             &kp PIPE  &kp DLLR  &hm LALT LBRC  &kp RBRC &dead GRAVE    &trans
-                &trans        &dead CARET &kp EQL   &hm LCTRL EXCL &hl NAV PLUS &dead TILD           &kp HASH  &kp LPAR  &hm LCTRL RPAR &kp LBKT &kp RBKT       &dead SQT
-                &trans        &trans      &kp NUHS  &kp UNDER      &kp COLN     &dead DQT              &kp AMPS  &kp QMARK &kp DOT        &kp SEMI &trans         &trans
+                &trans        &kp LT      &kp SLASH &hm LALT MINUS  &kp GT       &kp STAR             &kp PIPE  &kp DLLR  &hm LALT LBRC  &kp RBRC &dead GRAVE    &trans
+                &trans        &dead CARET &kp EQL   &hm LCTRL UNDER &hl NAV EXCL &dead TILD           &kp HASH  &kp LPAR  &hm LCTRL RPAR &kp LBKT &kp RBKT       &dead SQT
+                &trans        &trans      &kp NUHS  &kp PLUS        &kp COLN     &dead DQT            &kp AMPS  &kp QMARK &kp DOT        &kp SEMI &trans         &trans
                                                       	      &trans &trans &trans              	         &trans &trans &trans
             >;
         };
@@ -413,9 +413,9 @@
             //                 |     |     |        |        |      |     |
             bindings = <
                 &dead TILD &kp STAR    &kp EQL  &kp MINUS      &kp GT     &kp SLASH       &trans &trans &trans &trans &trans &trans
-                &trans     &kp N1      &kp N2   &kp N3         &hl NAV N4 &kp N5          &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &trans
+                &kp N0     &kp N1      &kp N2   &kp N3         &hl NAV N4 &kp N5          &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &trans
                 &kp LA(N3) &dead CARET &kp DLLR &kp LA(LS(N2)) &kp PLUS   &kp PRCNT       &trans &trans &trans &trans &trans &trans
-                                                      &trans &trans &kp LSHFT               &trans &trans &trans
+                                                     &trans &trans &kp LSHFT                  &trans &trans &trans
             >;
         };
 
