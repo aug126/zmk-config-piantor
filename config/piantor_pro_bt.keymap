@@ -13,14 +13,14 @@
 	//           |  ____  |  APP  |  SPACE    |    SHIFT  |  SYMB   |  SYSTEM  |
 
 	// ACCENT - NUMBER ---------------------------------------------------------------
-	// |      |  Ù  |  /  |  -  |  Ç  |  À    |    Ï  |  Û  |  -  |  È  |  Ê  |  Ë   |
-	// |   0  |  1  |  2  |  3  |  4  |  5    |    6  |  7  |  8  |  9  |  0  |  Ü   |
-	// |      |  Â  |  \  |  _  |  :  |  "    |    %  |  @  |  _  |  Ô  |  Î  |      |
+	// |      |  Ù  |  /  |  -  |  Ç  |  À    |    Ï  |  Û  |     |  È  |  Ê  |  Ë   |
+	// |      |  1  |  2  |  3  |  4  |  5    |    6  |  7  |  8  |  9  |  0  |  Ü   |
+	// |      |  Â  |  \  |  +  |  1  |       |    %  |  0  |  .  |  Ô  |  Î  |      |
 
 	// SYMBOL ------------------------------------------------------------------------
-	// |      |  <  |  /  |  -  |  >  |  *    |    |  |  $  |  {  |  }  |  `  |      |
+	// |      |  <  |  /  |  -  |  >  |  *    |    @  |  $  |  {  |  }  |  `  |      |
 	// |      |  ^  |  =  |  _  |  +  |  ~    |    #  |  (  |  )  |  [  |  ]  |  '   |
-	// |      |     |  \  |  !  |  :  |  "    |    &  |  ?  |  .  |  ;  | RET | RET  |
+	// |      |     |  \  |  !  |  :  |  |    |    &  |  ?  |  .  |  ;  | RET | RET  |
 
 
 
@@ -334,14 +334,14 @@
         accent_layer {
             display-name = "ACCENT";
 	// ACCENT - NUMBER ---------------------------------------------------------------
-	// |      |  Ù  |  /  |  -  |  Ç  |  À    |   (Ï) | (Û) |  -  | (È) | (Ê) |  Ë   |
+	// |      |  Ù  |  /  |  -  |  Ç  |  À    |   (Ï) | (Û) |     | (È) | (Ê) |  Ë   |
 	// |      |  1  |  2  |  3  |  4  |  5    |    6  |  7  |  8  |  9  |  0  | (Ü)  |
-	// |      | (Â) |  \  |  _  |  :  |  "    |    %  |  @  |  _  |  Ô  | (Î) |      |
+	// |      | (Â) |  \  |  +  |  1  |       |    %  |  0  |  .  |  Ô  | (Î) |      |
 	//          |  NONE  |  APP  |  SHIFT    |    SPACE  |  ACCENT  |  SYSTEM  |
             bindings = <
-                &trans   &accent GRAVE U &kp SLASH &kp MINUS &accent SQT C &accent GRAVE A      &accent LS(SQT) I &accent CARET U &kp MINUS &accent GRAVE E &accent CARET E &accent LS(SQT) E
+                &trans   &accent GRAVE U &kp SLASH &kp MINUS &accent SQT C &accent GRAVE A      &accent LS(SQT) I &accent CARET U &trans    &accent GRAVE E &accent CARET E &accent LS(SQT) E
                 &trans   &kp N1          &kp N2    &kp N3    &hl NAV N4    &kp N5               &kp N6            &kp N7          &kp N8    &kp N9          &kp N0          &accent LS(SQT) U
-                &trans   &accent CARET A &kp NUHS  &kp UNDER &kp COLN      &dead DQT            &kp PRCNT         &kp AT          &kp UNDER &accent CARET O &accent CARET I &accent CARET I
+                &trans   &accent CARET A &kp NUHS  &kp PLUS  &kp N1        &trans               &kp PRCNT         &kp N0          &kp UNDER &accent CARET O &accent CARET I &accent CARET I
                         			          &trans &trans &trans                      &trans &trans &trans
             >;
         };
@@ -367,13 +367,13 @@
         symbol_layer {
             display-name = "SYM";
 	// SYMBOL ------------------------------------------------------------------------
-	// |      |  <  |  /  |  -  |  >  |  *    |    |  |  $  |  {  |  }  |  `  |      |
+	// |      |  <  |  /  |  -  |  >  |  *    |    @  |  $  |  {  |  }  |  `  |      |
 	// |      |  ^  |  =  |  _  |  !  |  ~    |    #  |  (  |  )  | \[  |  ]  |  '   |
-	// |      |     |  \  |  +  |  :  |  "    |    &  |  ?  |  .  |  ;  | RET | RET  |
+	// |      |     |  \  |  +  |  :  |  |    |    &  |  ?  |  .  |  ;  | RET | RET  |
             bindings = <
-                &trans        &kp LT      &kp SLASH &hm LALT MINUS  &kp GT       &kp STAR             &kp PIPE  &kp DLLR  &hm LALT LBRC  &kp RBRC &dead GRAVE    &trans
+                &trans        &kp LT      &kp SLASH &hm LALT MINUS  &kp GT       &kp STAR             &kp AT    &kp DLLR  &hm LALT LBRC  &kp RBRC &dead GRAVE    &trans
                 &trans        &dead CARET &kp EQL   &hm LCTRL UNDER &hl NAV EXCL &dead TILD           &kp HASH  &kp LPAR  &hm LCTRL RPAR &kp LBKT &kp RBKT       &dead SQT
-                &trans        &trans      &kp NUHS  &kp PLUS        &kp COLN     &dead DQT            &kp AMPS  &kp QMARK &kp DOT        &kp SEMI &trans         &trans
+                &trans        &trans      &kp NUHS  &kp PLUS        &kp COLN     &kp PIPE             &kp AMPS  &kp QMARK &kp DOT        &kp SEMI &trans         &trans
                                                       	      &trans &trans &trans              	         &trans &trans &trans
             >;
         };
@@ -484,3 +484,5 @@
         };
     };
 };
+
+
