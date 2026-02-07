@@ -45,6 +45,11 @@
 #define TMX 9
 #define SYS 10
 
+// config
+#define PRIOR_IDLE 50
+#define TAPPING_TERM 200
+#define QUICK_TAP 80
+
 &sl {
     release-after-ms = <500>;
 };
@@ -68,9 +73,9 @@
             #binding-cells = <2>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
-            require-prior-idle-ms = <180>;
-            tapping-term-ms = <250>;
-            quick-tap-ms = <60>;
+            require-prior-idle-ms = <PRIOR_IDLE>;
+            tapping-term-ms = <TAPPING_TERM>;
+            quick-tap-ms = <QUICK_TAP>;
         };
 
         // the home-row layer-tap to flavor "balanced" (Waits for tapping-term-ms before deciding. Safe, but sometimes feels laggy.)
@@ -80,9 +85,9 @@
             #binding-cells = <2>;
             flavor = "balanced";
             bindings = <&mo>, <&kp>;
-            require-prior-idle-ms = <180>;
-            tapping-term-ms = <250>;
-            quick-tap-ms = <60>;
+            require-prior-idle-ms = <PRIOR_IDLE>;
+            tapping-term-ms = <TAPPING_TERM>;
+            quick-tap-ms = <QUICK_TAP>;
         };
 
 	// hold-tap to fravor "hold-preferred" (If another key is pressed before the timer expires, it chooses hold) useful to type Layer NUM instead of ESC
@@ -100,9 +105,9 @@
             #binding-cells = <2>;
             flavor = "balanced";
             bindings = <&kp>, <&dead>;
-            require-prior-idle-ms = <180>;
-            tapping-term-ms = <250>;
-            quick-tap-ms = <160>;
+            require-prior-idle-ms = <PRIOR_IDLE>;
+            tapping-term-ms = <TAPPING_TERM>;
+            quick-tap-ms = <QUICK_TAP>;
         };
 
 	// home-row layer with dead key on tap (2-key sequence)
@@ -111,24 +116,12 @@
             #binding-cells = <2>;
             flavor = "balanced";
             bindings = <&mo>, <&dead>;
-            require-prior-idle-ms = <180>;
-            tapping-term-ms = <250>;
-            quick-tap-ms = <160>;
+            require-prior-idle-ms = <PRIOR_IDLE>;
+            tapping-term-ms = <TAPPING_TERM>;
+            quick-tap-ms = <QUICK_TAP>;
         };
 
 
-
-        // key = `,`, on shift hold = ?
-        mm_cma_qm: mm_comma_to_qestionmark {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            // react when either Shift is held:
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-            // no shift -> ",", with shift -> "/"
-            bindings = <&kp COMMA>, <&kp SLASH>;
-            // ensure the Shift you hold stays applied to the "/" press
-            keep-mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
 
 	 // temporary test to keep comma active whatever shift is hold or not
         // key = `,`, on shift hold = .
@@ -175,15 +168,6 @@
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
 
-	// /!\ To be used as `&osl ACC ACC`, this to make roll with only first tap on accent layer. temporary disebled to try accents without (lead to dead key issues when combined with alternate space)
-	 // Little improvement to smooth the "one-shot" accents. This help to release the accent layer in less than 10ms to avoid 2 keys pressed on sticky_layer while rolling (as it behave as a momentary if held)
-	osl: one_shot_layer {
-	    compatible = "zmk,behavior-hold-tap";
-	    #binding-cells = <2>;
-	    tapping-term-ms = <180>; // exact number to be found (150-250?). With a big number we avoid to write `ˆé` instead of `ô` (é rolled on accent layer still active). With a small number, a 2 wanted accent roll will fail the 2th. ex `à`+`SPACE`
-	    flavor = "tap-preferred";
-	    bindings = <&mo>, <&osm>;  // Hold = momentary, Tap = one-shot
-	};
    };
 };
 
@@ -341,7 +325,7 @@
             bindings = <
                 &trans   &accent GRAVE U &kp SLASH &kp MINUS &accent SQT C &accent GRAVE A      &accent LS(SQT) I &accent CARET U &trans    &accent GRAVE E &accent CARET E &accent LS(SQT) E
                 &trans   &kp N1          &kp N2    &kp N3    &hl NAV N4    &kp N5               &kp N6            &kp N7          &kp N8    &kp N9          &kp N0          &accent LS(SQT) U
-                &trans   &accent CARET A &kp NUHS  &kp PLUS  &kp N1        &trans               &kp PRCNT         &kp N0          &kp UNDER &accent CARET O &accent CARET I &accent CARET I
+                &trans   &accent CARET A &kp NUHS  &kp PLUS  &kp N1        &trans               &kp PRCNT         &kp N0          &kp DOT &accent CARET O &accent CARET I &accent CARET I
                         			          &trans &trans &trans                      &trans &trans &trans
             >;
         };
