@@ -17,8 +17,8 @@
 
 	// ACCENT ---------------------------------------------------------------
 	// |      |     |     |     |     |       |       |  Û  |  Ô  |  Ù  |  Ë  |      |
-	// |      |     |     |     |     |       |       |  È  |  À  |  Ê  |  Î  |      |
-	// |      |     |     |     |     |       |       |  Ç  |  Â  |  Ü  |  Ï  |      |
+	// |      |     |     |     |     |       |    E  |  È  |  À  |  Ê  |  Ï  |      |
+	// |      |     |     |     |     |       |       |  Ç  |  Â  |  Î  |  Ü  |      |
 
 	// NUMBER ---------------------------------------------------------------
 	// |      |     |     |     |  ,  |       |    +  |  7  |  8  |  9  |     |      |
@@ -59,8 +59,8 @@
 #define SYS 10
 
 // config
-#define PRIOR_IDLE 70
-#define TAPPING_TERM 180
+#define PRIOR_IDLE 90
+#define TAPPING_TERM 160
 #define QUICK_TAP 150
 
 &sl {
@@ -332,11 +332,11 @@
             display-name = "ACCENT";
 	// ACCENT ---------------------------------------------------------------
 	// |      |     |     |     |     |       |       |  Û  |  Ô  |  Ù  |  Ë  |      |
-	// |      |     |     |     |     |       |       |  È  |  À  |  Ê  |  Ï  |      |
+	// |      |     |     |     |     |       |    E  |  È  |  À  |  Ê  |  Ï  |      |
 	// |      |     |     |     |     |       |       |  Ç  |  Â  |  Î  |  Ü  |      |
             bindings = <
                 &trans   &trans &trans &trans &trans &trans              &trans &accent CARET U &accent CARET O &accent GRAVE U &accent LS(SQT) E   &trans
-                &trans   &trans &trans &trans &trans &trans              &trans &accent GRAVE E &accent GRAVE A &accent CARET E &accent LS(SQT) I   &trans
+                &trans   &trans &trans &trans &trans &trans              &kp E  &accent GRAVE E &accent GRAVE A &accent CARET E &accent LS(SQT) I   &trans
                 &trans   &trans &trans &trans &trans &trans              &trans &accent SQT C   &accent CARET A &accent CARET I &accent LS(SQT) U   &trans
                         	   &trans &trans &trans                      &trans &trans &trans
             >;
