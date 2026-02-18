@@ -8,7 +8,7 @@
  	// GRAPHITE ----------------------------------------------------------------------
 	// | tab  |  B  |  L  |  D  |  C  |  V    |   '/" |  F  |  O  |  U  |  J  | bspc |
 	// |      |  N  |  R  |  T  |  S  |  G    |    Y  |  H  |  A  |  E  |  I  |      |
-	// | esc  |  Q  |  X  |  M  |  W  |  Z    |    K  |  P  | ,/. | é/É | ret | ret  | 
+	// | esc  |  Q  |  X  |  M  |  W  |  Z    |    K  |  P  | ,/. | é/? | ret | ret  | 
 
 	// (ACCENT - NUMBER) -> deprecated -----------------------------------------------
 	// |      |  Ù  |  /  |  -  |  Ç  |  À    |    Ï  |  Û  |     |  È  |  Ê  |  Ë   |
@@ -16,27 +16,32 @@
 	// |      |  Â  |  \  |  +  |  1  |       |    %  |  0  |  .  |  Ô  |  Î  |      |
 
 	// ACCENT ---------------------------------------------------------------
-	// |      |     |     |     |     |       |       |  Û  |  Ô  |  Ù  |  Ë  |      |
-	// |      |     |     |     |     |       |    E  |  È  |  À  |  Ê  |  Ï  |      |
-	// |      |     |     |     |     |       |       |  Ç  |  Â  |  Î  |  Ü  |      |
+	// |      |     |     |     |  Ç  |       |       |  Û  |  Ô  |  Ù  |  Ë  |      |
+	// |      |     |     |     |     |       |    E  |  È  |  À  |  Î  |  Ï  |      |
+	// |      |     |     |     |     |       |       |  Ê  |  Â  |  Ü  |     |      |
 
 	// NUMBER ---------------------------------------------------------------
 	// |      |     |     |     |  ,  |       |    +  |  7  |  8  |  9  |     |      |
 	// |      |     |     |     |  .  |       |    /  |  4  |  5  |  6  |  0  |  =   |
 	// |      |     |     |     |     |       |    -  |  1  |  2  |  3  |     |      |
 
-	// SYMBOL ------------------------------------------------------------------------
+	// (SYMBOL) -> deprecated ------------------------------------------------------------------------
 	// |      |  <  |  /  |  -  |  >  |  *    |    @  |  $  |  {  |  }  |  `  |      |
 	// |      |  ~  |  =  |  _  |  !  |  %    |    #  |  (  |  )  |  [  |  ]  |  '   |
 	// |      |  ^  |  \  |  +  |  :  |  |    |    &  |  ?  |  .  |  ;  |     |      |
 
+	// SYMBOL ------------------------------------------------------------------------
+	// |      |  ~  |  *  |  %  |  &  |  #    |    +  |  )  |  (  |  {  |  `  |      |
+	// |      |  <  |  !  |  =  |  >  |  ;    |    /  |  _  |  }  |  ]  |  [  |  '   |
+	// |      |  ^  |  \  |  $  |  |  |  @    |    -  |  :  |  .  |  ?  |     |      |
+
  	// MODIFIERS/LAYERS --------------------------------------------------------------
 	// |      |     | GUI | ALT |(TMX)|       |       | GUI | ALT |     |     |      |
-	// |  ACC |     | NUM | CTL | NAV |       |       |     | CTL |     |     | ACC  |
+	// | SHFT |     | NUM | CTL | NAV |       |       |     | CTL |     |     | SHFT |
 	// |      |     |     |     |     |       |       |     |     |     |     |      |
 
  	// THUMBS
-	//          |  WIN   | SHIFT | (SPACE)    |     SPACE  | SYMBOL | SYSTEM  |
+	//          |  WIN   | SYMBOL |   -----    |     SPACE  | ACCENT | SYSTEM  |
 
 
 #include <behaviors.dtsi>
@@ -150,7 +155,22 @@
             // keep-mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+
 	 // temporary test to keep comma active whatever shift is hold or not
+        // key = `,`, on shift hold = .
+        mm_e_qmark: mm_e_accent_question_mark {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            // react when either Shift is held:
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            // no shift -> "é", with shift -> "?"
+            bindings = <&accent SQT E>, <&kp QMARK>;
+            // ensure the Shift you hold stays applied to the "/" press
+            // keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+	 // temporary test to keep comma active whatever shift is hold or not
+	 // to be removd as now I want it to be " on shift
         // key = `'`, on shift hold = _
         mm_sqt_dqt: mm_quote_to_doublequote {
             compatible = "zmk,behavior-mod-morph";
@@ -287,17 +307,17 @@
 	// |      |     | GUI | ALT |(TMX)|      |      | GUI | ALT |     |     |     |
 	// |      |     |     | CTL | NAV |      |      |     | CTL |     |     |     |
 	// |      |     |     |     |     |      |      |     |     |     |     |     |
-	//          |  ____  |  APP  |  SHIFT    |    SPACE  |  ACCENT  |  SYSTEM  |
+	//          |  ----  |  WIN  | SYMBOL    |    SPACE  |  ACCENT  | SYSTEM  |
 
 	// GRAPHITE -----------------------------------------------------------------------
 	// | TAB  |  B  |  L  |  D  |  C  |  V   |  '/" |  F  |  O  |  U  |  J  | BSPC |
 	// | SYM  |  N  |  R  |  T  |  S  |  G   |   Y  |  H  |  A  |  E  |  I  | SYM  |
-	// | ESC  |  Q  |  X  |  M  |  W  |  Z   |   K  |  P  | ,/. | é/É  | RET | RET  | 
+	// | ESC  |  Q  |  X  |  M  |  W  |  Z   |   K  |  P  | ,/. | é/?  | RET | RET  | 
            bindings = <
-                &kp TAB  &kp B     &hm LGUI L  &hm LALT D  &hl TMX C   &kp V           &mm_sqt_dqt &hm RGUI F  &hm LALT O  &u_then_sbf     &kp J   &kp BSPC
-                &sl ACC  &kp N     &hl NUM R  &hm LCTRL T &hl NAV S   &kp G           &kp Y       &kp H       &hm LCTRL A &e_then_sbf     &kp I   &sl ACC
-                &kp ESC  &kp Q     &kp X       &kp M       &hm LSHFT W &kp Z           &kp K       &kp P       &mm_cma_dot &accent SQT E &kp RET &kp RET
-                                        &mo APP  &sk LSHFT  &kp SPACE                       &kp SPACE &sl SYM  &mo SYS
+                &kp TAB    &kp B &hm LGUI L &hm LALT D  &hl TMX C   &kp V           &mm_sqt_dqt &hm RGUI F  &hm LALT O  &u_then_sbf &kp J    &kp BSPC
+                &sk LSHFT  &kp N &hl NUM R  &hm LCTRL T &hl NAV S   &kp G           &kp Y       &kp H       &hm LCTRL A &e_then_sbf &kp I    &sk LSHFT
+                &kp ESC    &kp Q &kp X      &kp M       &hm LSHFT W &kp Z           &kp K       &kp P       &mm_cma_dot &mm_e_qmark &kp RET  &kp RET
+                                           &trans &mo APP  &sl SYM                       &kp SPACE &sl ACC  &mo SYS
             >;
 
         };
@@ -332,13 +352,13 @@
         accent_layer {
             display-name = "ACCENT";
 	// ACCENT ---------------------------------------------------------------
-	// |      |     |     |     |     |       |       |  Û  |  Ô  |  Ù  |  Ë  |      |
-	// |      |     |     |     |     |       |    E  |  È  |  À  |  Ê  |  Ï  |      |
-	// |      |     |     |     |     |       |       |  Ç  |  Â  |  Î  |  Ü  |      |
+	// |      |     |     |     |  Ç  |       |       |  Û  |  Ô  |  Ù  |  Ë  |      |
+	// |      |     |     |     |     |       |    E  |  È  |  À  |  Î  |  Ï  |      |
+	// |      |     |     |     |     |       |       |  Ê  |  Â  |  Ü  |     |      |
             bindings = <
-                &trans   &trans &trans &trans &trans &trans              &trans &accent CARET U &accent CARET O &accent GRAVE U &accent LS(SQT) E   &trans
-                &trans   &trans &trans &trans &trans &trans              &kp E  &accent GRAVE E &accent GRAVE A &accent CARET E &accent LS(SQT) I   &trans
-                &trans   &trans &trans &trans &trans &trans              &trans &accent SQT C   &accent CARET A &accent CARET I &accent LS(SQT) U   &trans
+                &trans   &trans &trans &trans &accent SQT C &trans              &trans &accent CARET U &accent CARET O &accent GRAVE U &accent LS(SQT) E   &trans
+                &trans   &trans &trans &trans &trans        &trans              &kp E  &accent GRAVE E &accent GRAVE A &accent CARET I &accent LS(SQT) I   &trans
+                &trans   &trans &trans &trans &trans        &trans              &trans &accent CARET E &accent CARET A &accent LS(SQT) U &trans          &trans
                         	   &trans &trans &trans                      &trans &trans &trans
             >;
         };
@@ -352,13 +372,13 @@
         symbol_layer {
             display-name = "SYM";
 	// SYMBOL ------------------------------------------------------------------------
-	// |      |  <  |  /  |  -  |  >  |  *    |    @  |  $  |  {  |  }  |  `  |      |
-	// |      |  ^  |  =  |  _  |  !  |  ~    |    #  |  (  |  )  | \[  |  ]  |  '   |
-	// |      |     |  \  |  +  |  :  |  |    |    &  |  ?  |  .  |  ;  | RET | RET  |
+	// |      |  ~  |  *  |  %  |  &  |  #    |    +  |  (  |  )  |  }  |  `  |      |
+	// |      |  <  |  !  |  =  |  >  |  ;    |    /  |  _  |  {  |  [  |  ]  |  '   |
+	// |      |  ^  |  \  |  $  |  |  |  @    |    -  |  :  |  .  |  ?  |     |      |
             bindings = <
-                &trans        &kp LT      &kp SLASH &hm LALT MINUS  &kp GT       &kp STAR             &kp AT    &kp DLLR  &hm LALT LBRC  &kp RBRC &dead GRAVE    &trans
-                &trans        &dead TILD  &kp EQL   &hm LCTRL UNDER &hl NAV EXCL &kp PRCNT            &kp HASH  &kp LPAR  &hm LCTRL RPAR &kp LBKT &kp RBKT       &dead SQT
-                &trans        &dead CARET &kp NUHS  &kp PLUS        &kp COLN     &kp PIPE             &kp AMPS  &kp QMARK &kp DOT        &kp SEMI &trans         &trans
+                &trans        &dead TILD  &kp STAR  &hm LALT PRCNT  &kp AMPS     &kp HASH             &kp PLUS  &kp LPAR   &hm LALT RPAR  &kp RBRC &dead GRAVE    &trans
+                &trans        &kp LT      &kp EXCL  &hm LCTRL EQL   &hl NAV GT   &kp SEMI             &kp SLASH &kp UNDER  &hm LCTRL LBRC &kp LBKT &kp RBKT       &dead SQT
+                &trans        &dead CARET &kp NUHS  &kp DLLR        &kp PIPE     &kp AT               &kp MINUS &kp COLN   &kp DOT        &kp QMARK &trans        &trans
                                                       	      &trans &trans &trans              	         &trans &trans &trans
             >;
         };
@@ -386,7 +406,10 @@
 // ~/
 // +=
 // -=
+// ../
+// ):
 // % / # * $ _ :
+// farm_season_field
 
         // #5
         number2_layer {
@@ -468,6 +491,9 @@
         };
     };
 };
+
+
+
 
 
 
