@@ -311,11 +311,11 @@
 
 	// GRAPHITE -----------------------------------------------------------------------
 	// | TAB  |  B  |  L  |  D  |  C  |  V   |  '/" |  F  |  O  |  U  |  J  | BSPC |
-	// | SYM  |  N  |  R  |  T  |  S  |  G   |   Y  |  H  |  A  |  E  |  I  | SYM  |
-	// | ESC  |  Q  |  X  |  M  |  W  |  Z   |   K  |  P  | ,/. | é/?  | RET | RET  | 
+	// | SFT  |  N  |  R  |  T  |  S  |  G   |   Y  |  H  |  A  |  E  |  I  | SFT  |
+	// | ESC  |  Q  |  X  |  M  |  W  |  Z   |   K  |  P  | ,/. | é/? | RET | RET  | 
            bindings = <
                 &kp TAB    &kp B &hm LGUI L &hm LALT D  &hl TMX C   &kp V           &mm_sqt_dqt &hm RGUI F  &hm LALT O  &u_then_sbf &kp J    &kp BSPC
-                &sk LSHFT  &kp N &hl NUM R  &hm LCTRL T &hl NAV S   &kp G           &kp Y       &kp H       &hm LCTRL A &e_then_sbf &kp I    &sk LSHFT
+                &sk LSHFT  &kp N &hl NUM R  &hm LCTRL T &hl NAV S   &kp G           &kp Y       &kp H       &hm LCTRL A &e_then_sbf &kp I    &sk RSHFT
                 &kp ESC    &kp Q &kp X      &kp M       &hm LSHFT W &kp Z           &kp K       &kp P       &mm_cma_dot &mm_e_qmark &kp RET  &kp RET
                                            &trans &mo APP  &sl SYM                       &kp SPACE &sl ACC  &mo SYS
             >;
@@ -343,7 +343,7 @@
                 &trans   &trans &trans &trans &trans &trans            &trans &trans &trans &kp H  &trans   &trans
                 &trans   &trans &trans &trans &trans &trans            &trans &kp U  &trans &trans &trans   &trans
                 &trans   &trans &trans &trans &trans &trans            &trans &trans &trans &trans &trans   &trans
-                                  &trans &trans &trans                     &trans &trans &trans
+                                  &trans &trans &trans                    &trans &trans &trans
             >;
         };
 
@@ -410,6 +410,8 @@
 // ):
 // % / # * $ _ :
 // farm_season_field
+// paths: ["./src", "./lib", "../shared"],
+// },
 
         // #5
         number2_layer {
@@ -445,8 +447,8 @@
         app_layer {
             display-name = "APP";
             bindings = <
-                &kp TAB  &kp LC(LA(LG(B))) &kp LC(LA(LG(L))) &kp LC(LA(LG(D))) &kp LC(LA(LG(C))) &kp LC(LA(LG(V)))           &kp LC(LA(LG(SQT)))   &kp LC(LA(LG(F)))   &kp LC(LA(LG(O)))   &hm LGUI LC(LA(LG(U)))  &kp LC(LA(LG(J))) &trans
-                &kp BSPC &kp LC(LA(LG(N))) &kp LC(LA(LG(R))) &kp LC(LA(LG(T))) &kp LC(LA(LG(S))) &kp LC(LA(LG(G)))           &kp LC(LA(LG(Y)))   &kp LC(LA(LG(H)))   &kp LC(LA(LG(A)))   &hm LSHFT LC(LA(LG(E))) &kp LC(LA(LG(I)))   &kp RET
+                &trans   &kp LC(LA(LG(B))) &kp LC(LA(LG(L))) &kp LC(LA(LG(D))) &kp LC(LA(LG(C))) &kp LC(LA(LG(V)))           &kp LC(LA(LG(SQT)))   &kp LC(LA(LG(F)))   &kp LC(LA(LG(O)))   &hm LGUI LC(LA(LG(U)))  &kp LC(LA(LG(J))) &trans
+                &trans   &kp LC(LA(LG(N))) &kp LC(LA(LG(R))) &kp LC(LA(LG(T))) &kp LC(LA(LG(S))) &kp LC(LA(LG(G)))           &kp LC(LA(LG(Y)))   &kp LC(LA(LG(H)))   &kp LC(LA(LG(A)))   &hm LSHFT LC(LA(LG(E))) &kp LC(LA(LG(I)))   &trans
                 &trans   &kp LC(LA(LG(Q))) &kp LC(LA(LG(X))) &kp LC(LA(LG(M))) &kp LC(LA(LG(W))) &kp LC(LA(LG(Z)))           &kp LC(LA(LG(K)))   &kp LC(LA(LG(P)))   &kp LC(LA(LG(DOT))) &kp LC(LA(LG(COMMA)))   &trans              &trans
                        							         &trans     &trans     &trans                   &trans     &trans     &trans
             >;
