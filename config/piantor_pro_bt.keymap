@@ -322,7 +322,7 @@
            bindings = <
                 &sk LSHFT    &kp B &hm LGUI L &hm LALT D  &hl TMX C   &kp V           &mm_sqt_dqt &hm RGUI F  &hm LALT O  &u_then_sbf &kp J    &sk RSHFT
                 &kp ESC      &kp N &hl NUM R  &hm LCTRL T &hl NAV S   &kp G           &kp Y       &kp H       &hm LCTRL A &e_then_sbf &kp I    &kp RET
-                &kp LA(BSPC) &kp Q &kp X      &kp M       &hm LSHFT W &kp Z           &kp K       &kp P       &mm_cma_dot &mm_e_qmark &none    &kp BSPC
+                &kp BSPC     &kp Q &kp X      &kp M       &hm LSHFT W &kp Z           &kp K       &kp P       &mm_cma_dot &mm_e_qmark &none    &kp LA(BSPC)
                                            &trans &mo APP  &sl SYM                       &kp SPACE &sl ACC  &mo SYS
             >;
 
