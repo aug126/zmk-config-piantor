@@ -24,7 +24,7 @@
 
 	// SYMBOL ------------------------------------------------------------------------
 	// |      |  ~  |  *  |  %  |  &  |  #    |    +  |  )  |  (  |  {  |  `  |      |
-	// |      |  <  |  !  |  =  |  >  |  ;    |    /  |  _  |  }  |  ]  |  [  |  '   |
+	// | CAPS |  <  |  !  |  =  |  >  |  ;    |    /  |  _  |  }  |  ]  |  [  |  '   |
 	// |      |  ^  |  \  |  $  |  |  |  @    |    -  |  :  |  .  |  ?  |     |      |
 
  	// MODIFIERS/LAYERS --------------------------------------------------------------
@@ -78,6 +78,10 @@
 &sk {
     release-after-ms = <500>;
     quick-release;
+};
+
+&caps_word {
+    continue-list = <UNDERSCORE MINUS DOT DELETE>;
 };
 
 / {
@@ -297,6 +301,12 @@
 		<&sl MACRO_PLACEHOLDER>; // Activate as sticky layer
 	};
 
+	 caps_word_base: caps_word_base {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&caps_word>, <&to BASE>;
+        };
+
     };
 };
 
@@ -379,12 +389,12 @@
             display-name = "SYM";
 	// SYMBOL ------------------------------------------------------------------------
 	// |      |  ~  |  *  |  %  |  &  |  #    |    +  |  )  |  (  |  {  |  `  |      |
-	// |      |  <  |  !  |  =  |  >  |  ;    |    /  |  _  |  }  |  ]  |  [  |  '   |
+	// | CAPS |  <  |  !  |  =  |  >  |  ;    |    /  |  _  |  }  |  ]  |  [  |  '   |
 	// |      |  ^  |  \  |  $  |  |  |  @    |    -  |  :  |  .  |  ?  |     |      |
             bindings = <
-                &trans        &dead TILD  &kp STAR  &hm LALT PRCNT  &kp AMPS     &kp HASH             &kp PLUS  &kp RPAR   &hm LALT LPAR  &kp LBRC &dead GRAVE    &trans
-                &trans        &kp LT      &kp EXCL  &hm LCTRL EQL   &hl NAV GT   &kp SEMI             &kp SLASH &kp UNDER  &hm LCTRL RBRC &kp RBKT &kp LBKT       &dead SQT
-                &trans        &dead CARET &kp NUHS  &kp DLLR        &kp PIPE     &kp AT               &kp MINUS &kp COLN   &kp DOT        &kp QMARK &trans        &trans
+                &trans           &dead TILD  &kp STAR  &hm LALT PRCNT  &kp AMPS     &kp HASH             &kp PLUS  &kp RPAR   &hm LALT LPAR  &kp LBRC &dead GRAVE    &trans
+                &caps_word_base  &kp LT      &kp EXCL  &hm LCTRL EQL   &hl NAV GT   &kp SEMI             &kp SLASH &kp UNDER  &hm LCTRL RBRC &kp RBKT &kp LBKT       &dead SQT
+                &trans           &dead CARET &kp NUHS  &kp DLLR        &kp PIPE     &kp AT               &kp MINUS &kp COLN   &kp DOT        &kp QMARK &trans        &trans
                                                       	      &trans &trans &trans              	         &trans &trans &trans
             >;
         };
