@@ -288,7 +288,7 @@
 	// | BSP |  Q  |  X  |  M  |  W  |  Z   |   K  |  P  | ,/. | é/? | --- | TAB  | 
            bindings = <
                 &kp ESC     &kp B &hm LGUI L &hm LALT D  &hm LGUI C  &kp V           &mm_sqt_dqt &hm RGUI F &hm LALT O  &u_then_sbf   &kp J    &kp RET
-                &sk LSHFT   &kp N &hl NUM R &hm LCTRL T &hl NAV S   &kp G           &kp Y        &kp H      &hm LCTRL A &e_then_sbf NUM &kp I    &sk RSHFT
+                &sk LSHFT   &kp N &hl NUM R &hm LCTRL T &hl NAV S   &kp G           &kp Y        &kp H      &hm LCTRL A &e_then_sbf     &kp I    &sk RSHFT
                 &kp BSPC    &kp Q &kp X      &kp M       &kp W       &kp Z           &kp K       &kp P      &mm_cma_dot &mm_e_qmark &none    &kp TAB
                                            &trans &mo APP  &sl SYM                       &kp SPACE &sl ACC  &mo SYS
             >;
@@ -405,14 +405,14 @@
         nav_layer {
             display-name = "NAV";
 	/* NAV Layer suggestion: */
-	/* |       |     |     |     |     |      || PgUp | Home | Up  | End |     |      | */
-	/* |       |     |     |     |     |      || PgDn | Left |Down |Right|     |      | */
-	/* |       |     |     |     |     |      || (Del)|      |     |     |     |      | */
+	/* |       |     |     |     |     |      || Home | PgDn | PgUp | End  |     |      | */
+	/* |       |     |     |     |     |      || Left | Down | Up   | Right|     |      | */
+	/* |       |     |     |     |     |      || (Del)|      |      |      |     |      | */
             bindings = <
-                &trans &trans &trans &trans &trans &trans  &kp PG_UP &kp HOME &kp UP &kp END &trans &trans
-                &trans &trans &trans &trans &trans &trans  &kp PG_DN &kp LEFT &kp DOWN &kp RIGHT &trans &trans
-                &trans &trans &trans &trans &trans &trans  &kp DEL &trans &trans &trans &trans &trans
-                                     &trans &trans &trans  &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans    &kp HOME &kp PG_DN &kp PG_UP &kp END   &trans &trans
+                &trans &trans &trans &trans &trans &trans    &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &trans &trans
+                &trans &trans &trans &trans &trans &trans    &kp DEL  &trans    &trans    &trans    &trans &trans
+                                  &trans &trans &trans          &trans &trans &trans
             >;
         };
 
